@@ -30,7 +30,7 @@
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Labib Fohayer",
-    "alternateName": ["লাবিব ফোহায়ের", "LabibFohayer"],
+    "alternateName": ["লাবিব ফোহায়ের", "Md. Labib Fohayer", "LabibFohayer"],
     "url": "https://labibfohayer.github.io",
     "image": "https://avatars.githubusercontent.com/labibfohayer",
     "jobTitle": "Founder & Chairman",
@@ -45,6 +45,7 @@
     },
     "description": "Founder & Chairman of Webpulse Automation. Web Developer & AI Automation Engineer passionate about building digital products, automating modern business workflows, and turning innovative ideas into reality.",
     "sameAs": [
+      "https://portfolio-orpin-rho-68.vercel.app",
       "https://linktr.ee/labibfohayer",
       "https://gravatar.com/labibfohayer",
       "https://www.linkedin.com/in/labib-fohayer",
@@ -62,6 +63,8 @@
       --card-bg: rgba(22, 27, 46, 0.7);
       --accent: #6366f1;
       --accent-glow: rgba(99, 102, 241, 0.35);
+      --highlight: #06b6d4;
+      --highlight-glow: rgba(6, 182, 212, 0.4);
       --text: #f8fafc;
       --text-muted: #94a3b8;
       --border: rgba(255, 255, 255, 0.08);
@@ -177,12 +180,20 @@
       transform: translateY(-2px);
       box-shadow: 0 8px 20px var(--accent-glow);
     }
-    .btn-primary {
-      background: var(--accent);
-      border-color: var(--accent);
+    .btn-featured {
+      background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+      border: none;
+      color: #ffffff;
+      font-weight: 700;
+      box-shadow: 0 4px 20px var(--highlight-glow);
     }
-    .btn-primary:hover {
-      background: #4f46e5;
+    .btn-featured:hover {
+      background: linear-gradient(135deg, #0891b2 0%, #2563eb 100%);
+      box-shadow: 0 8px 25px var(--highlight-glow);
+    }
+    .btn-secondary {
+      background: rgba(99, 102, 241, 0.2);
+      border-color: rgba(99, 102, 241, 0.4);
     }
     footer {
       font-size: 0.8rem;
@@ -212,8 +223,11 @@
     </div>
 
     <div class="links-grid">
-      <a href="https://linktr.ee/labibfohayer" target="_blank" rel="noopener" class="btn btn-primary">
-        ⚡ All Official Links (Linktree)
+      <a href="https://portfolio-orpin-rho-68.vercel.app/" target="_blank" rel="noopener" class="btn btn-featured">
+        🚀 Full Interactive Portfolio & Projects (Vercel)
+      </a>
+      <a href="https://linktr.ee/labibfohayer" target="_blank" rel="noopener" class="btn btn-secondary">
+        ⚡ All Official Social Links (Linktree)
       </a>
       <a href="https://gravatar.com/labibfohayer" target="_blank" rel="noopener" class="btn">
         👤 Gravatar Verified Profile
