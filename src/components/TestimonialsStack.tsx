@@ -16,8 +16,8 @@ const TESTIMONIALS: Testimonial[] = [
   {
     quote:
       "Working with Labib has been one of the smoothest collaborations I've had",
-    name: "Ruxandra Florescu",
-    position: "COO, Dare Digital",
+    name: "Sadiya Akter Suraiya",
+    position: "CEO, Ponyopuri",
     avatar: "/cdn-assets/6ab3d538dbdbc6a5f1d1d3f4_Rux.jpg",
     srcset:
       "/cdn-assets/6ab3d538dbdbc6a5f1d1d3f4_Rux-p-500.jpg 500w, /cdn-assets/6ab3d538dbdbc6a5f1d1d3f4_Rux.jpg 800w",
