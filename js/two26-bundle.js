@@ -5236,11 +5236,17 @@ gsap.registerPlugin(SplitText,ScrollTrigger,DrawSVGPlugin,MotionPathPlugin,Custo
         window.lenis.dimensions.wrapper === wrapper &&
         document.body.contains(wrapper)
       ) {
+        window.lenis.resize();
+        if (typeof ScrollTrigger !== "undefined") {
+          ScrollTrigger.refresh();
+        }
         return;
       }
 
       if (window.lenis) {
-        window.lenis.destroy();
+        try {
+          window.lenis.destroy();
+        } catch (e) {}
         window.lenis = null;
       }
 
@@ -5286,12 +5292,12 @@ gsap.registerPlugin(SplitText,ScrollTrigger,DrawSVGPlugin,MotionPathPlugin,Custo
         gestureOrientation: "vertical",
         smoothWheel: true,
         infinite: false,
-        duration: isTouch ? 1.0 : 1.7,
-        wheelMultiplier: 0.9,
-        touchMultiplier: isTouch ? 1.0 : 2.6,
-        touchInertiaMultiplier: isTouch ? 18 : 50,
+        duration: isTouch ? 1.0 : 1.2,
+        wheelMultiplier: 1.0,
+        touchMultiplier: isTouch ? 1.0 : 1.8,
+        touchInertiaMultiplier: isTouch ? 18 : 35,
         syncTouch: false, // Prevents trackpad pull-back & touch fighting
-        syncTouchLerp: isTouch ? 0.09 : 0.35,
+        syncTouchLerp: isTouch ? 0.09 : 0.25,
         touchInertiaExponent: 2,
         easing: function (t) {
           return Math.min(1, 1.001 - Math.pow(2, -10 * t));
