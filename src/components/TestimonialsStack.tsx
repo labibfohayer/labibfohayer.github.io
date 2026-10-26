@@ -25,7 +25,7 @@ const TESTIMONIALS: Testimonial[] = [
   {
     quote: "Labib truly brought our digital vision to life",
     name: "Mawlana Omar Faruk",
-    position: "Chairman, Pioneer Study Care (PSC)",
+    position: "Principle, Al Modina Madrasa",
     avatar: "/images/mawlana-omar-faruk.jpg",
     review:
       "Labib is an amazing professional with an incredible amount of coding and automation talent. He took our ideas, understood them completely, and built a seamless web experience that went beyond anything we imagined. We feel incredibly lucky to have worked with him. Cannot recommend him highly enough!",
