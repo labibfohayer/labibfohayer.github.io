@@ -3,21 +3,21 @@ import Script from "next/script";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Two26 Studio | Boutique Branding & Digital Design Studio",
+  title: "Labib Fohayer | Web Designer & AI Automation Engineer",
   description:
-    "Two26 is a boutique design studio creating brands with strategy, personality and a healthy obsession for the details.",
-  keywords: [
-    "Two26 Studio",
-    "Branding Studio",
-    "Packaging Design",
-    "Webflow Development",
-    "Bucharest Design Studio",
-  ],
+    "Portfolio of Labib Fohayer. Blending creative web design with intelligent AI automation to build scalable business systems.",
   openGraph: {
-    title: "Two26 Studio | Boutique Branding & Digital Design Studio",
+    title: "Labib Fohayer | Web Designer & AI Automation Engineer",
     description:
-      "Creating brands with strategy, personality and a healthy obsession for the details.",
+      "Portfolio of Labib Fohayer. Blending creative web design with intelligent AI automation to build scalable business systems.",
+    siteName: "Labib Fohayer",
     type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Labib Fohayer | Web Designer & AI Automation Engineer",
+    description:
+      "Portfolio of Labib Fohayer. Blending creative web design with intelligent AI automation to build scalable business systems.",
   },
 };
 
