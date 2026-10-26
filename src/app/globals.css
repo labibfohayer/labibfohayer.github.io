@@ -1550,12 +1550,13 @@ body {
   align-items: center !important;
   justify-content: center !important;
   overflow: hidden !important;
+  background-color: transparent !important;
 }
 
 html.page-transitioning .page-transition-overlay {
   display: flex !important;
   visibility: visible !important;
-  background-color: #ff5400 !important;
+  pointer-events: auto !important;
 }
 
 .page-transition-overlay .svg-tcontact {

@@ -38,7 +38,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/favicon.svg" />
         <script
           dangerouslySetInnerHTML={{
-            __html: `if(typeof sessionStorage!=='undefined'&&sessionStorage.getItem('two26_transition_active')==='true'){document.documentElement.classList.add('page-transitioning');}`,
+            __html: `(function(){if(typeof sessionStorage!=='undefined'&&sessionStorage.getItem('two26_transition_active')==='true'){document.documentElement.classList.add('page-transitioning');}window.addEventListener('pageshow',function(e){if(e.persisted||(typeof sessionStorage!=='undefined'&&sessionStorage.getItem('two26_transition_active')!=='true')){document.documentElement.classList.remove('page-transitioning');var o=document.querySelector('.page-transition-overlay');if(o){o.style.display='none';o.style.visibility='hidden';o.style.pointerEvents='none';}}});window.addEventListener('popstate',function(){document.documentElement.classList.remove('page-transitioning');var o=document.querySelector('.page-transition-overlay');if(o){o.style.display='none';o.style.visibility='hidden';o.style.pointerEvents='none';}});})();`,
           }}
         />
       </head>

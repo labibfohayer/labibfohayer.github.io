@@ -14,23 +14,42 @@ export default function PageTransitionOverlay() {
     const path = pathRef.current;
     if (!overlay || !path) return;
 
-    // Check if an incoming page transition is active
-    const isTransitionActive =
-      typeof window !== "undefined" &&
-      sessionStorage.getItem("two26_transition_active") === "true";
+    // Helper: Reset and completely hide overlay immediately
+    const resetOverlay = () => {
+      sessionStorage.removeItem("two26_transition_active");
+      document.documentElement.classList.remove("page-transitioning");
 
-    if (isTransitionActive) {
+      if (overlay) {
+        overlay.style.display = "none";
+        overlay.style.visibility = "hidden";
+        overlay.style.pointerEvents = "none";
+        overlay.style.opacity = "0";
+      }
+      if (path) {
+        gsap.killTweensOf(path);
+        const totalLen = path.getTotalLength ? path.getTotalLength() : 3000;
+        path.style.strokeDasharray = `${totalLen}`;
+        path.style.strokeDashoffset = `${totalLen}`;
+        path.style.strokeWidth = "0px";
+      }
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    };
+
+    // Helper: Animate overlay OUT (1600px -> 0px) to seamlessly reveal target page
+    const animateOut = () => {
       sessionStorage.removeItem("two26_transition_active");
       document.documentElement.classList.remove("page-transitioning");
 
       overlay.style.display = "flex";
       overlay.style.visibility = "visible";
       overlay.style.pointerEvents = "auto";
+      overlay.style.opacity = "1";
 
       const totalLen = path.getTotalLength ? path.getTotalLength() : 3000;
       path.style.strokeDasharray = `${totalLen}`;
 
-      // Sweep OUT (1600px -> 0px) to seamlessly reveal target page
+      gsap.killTweensOf(path);
       gsap.fromTo(
         path,
         { strokeDashoffset: 0, strokeWidth: "1600px" },
@@ -40,13 +59,45 @@ export default function PageTransitionOverlay() {
           duration: 0.65,
           ease: "power2.inOut",
           onComplete: () => {
-            overlay.style.display = "none";
-            overlay.style.visibility = "hidden";
-            overlay.style.pointerEvents = "none";
+            resetOverlay();
           },
         }
       );
+    };
+
+    // Check if an incoming page transition is active
+    const isTransitionActive =
+      typeof window !== "undefined" &&
+      sessionStorage.getItem("two26_transition_active") === "true";
+
+    if (isTransitionActive) {
+      animateOut();
+    } else {
+      resetOverlay();
     }
+
+    // BFCache (Back/Forward Cache) & popstate handlers
+    const handlePageShow = (e: PageTransitionEvent) => {
+      if (e.persisted || sessionStorage.getItem("two26_transition_active") !== "true") {
+        resetOverlay();
+      } else {
+        animateOut();
+      }
+    };
+
+    const handlePopState = () => {
+      resetOverlay();
+    };
+
+    window.addEventListener("pageshow", handlePageShow);
+    window.addEventListener("popstate", handlePopState);
+
+    // Safety timeout: Ensure overlay never remains visible longer than 1.5s
+    const safetyTimer = setTimeout(() => {
+      if (overlay && window.getComputedStyle(overlay).display !== "none") {
+        resetOverlay();
+      }
+    }, 1500);
 
     // Expose global trigger function
     (window as any).triggerPageTransition = (
@@ -63,14 +114,18 @@ export default function PageTransitionOverlay() {
       }
 
       sessionStorage.setItem("two26_transition_active", "true");
+      document.documentElement.classList.add("page-transitioning");
+
       overlay.style.display = "flex";
       overlay.style.visibility = "visible";
       overlay.style.pointerEvents = "auto";
+      overlay.style.opacity = "1";
 
       const totalLen = path.getTotalLength ? path.getTotalLength() : 3000;
       path.style.strokeDasharray = `${totalLen}`;
       path.style.strokeDashoffset = `${totalLen}`;
 
+      gsap.killTweensOf(path);
       // Sweep IN (0 -> 1600px) matching Let's Talk button transition
       gsap.fromTo(
         path,
@@ -78,7 +133,7 @@ export default function PageTransitionOverlay() {
         {
           strokeDashoffset: 0,
           strokeWidth: "1600px",
-          duration: 0.75,
+          duration: 0.65,
           ease: "power2.inOut",
           onComplete: () => {
             if (navigateCallback) {
@@ -92,10 +147,10 @@ export default function PageTransitionOverlay() {
     };
 
     return () => {
-      // Fallback cleanup
-      if (overlay) {
-        overlay.style.pointerEvents = "none";
-      }
+      clearTimeout(safetyTimer);
+      window.removeEventListener("pageshow", handlePageShow);
+      window.removeEventListener("popstate", handlePopState);
+      resetOverlay();
     };
   }, [pathname]);
 
@@ -104,6 +159,11 @@ export default function PageTransitionOverlay() {
       ref={overlayRef}
       className="page-transition-overlay"
       aria-hidden="true"
+      style={{
+        display: "none",
+        visibility: "hidden",
+        pointerEvents: "none",
+      }}
     >
       <div className="svg-tcontact">
         <svg
