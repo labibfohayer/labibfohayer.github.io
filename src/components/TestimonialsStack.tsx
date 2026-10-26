@@ -6,6 +6,8 @@ import gsap from "gsap";
 interface Testimonial {
   quote: string;
   name: string;
+  displayName?: React.ReactNode;
+  nameStyle?: React.CSSProperties;
   position: string;
   avatar: string;
   srcset?: string;
@@ -34,6 +36,16 @@ const TESTIMONIALS: Testimonial[] = [
     quote:
       "Working with Labib is like brainstorming ideas with a brilliant tech partner",
     name: "Sharif Mohammad Nasrullah",
+    displayName: (
+      <>
+        Sharif Mohammad<br />Nasrullah
+      </>
+    ),
+    nameStyle: {
+      textAlign: "center",
+      lineHeight: "1.25",
+      minWidth: "208px",
+    },
     position: "Lecturer, As-Sunnah",
     avatar: "/images/sharif-mohammad-nasrullah.jpg",
     review:
@@ -518,7 +530,9 @@ export default function TestimonialsStack() {
                             />
                           </div>
                           <div className="pfp-info-wrapper">
-                            <div className="testimonial-pfp-name">{t.name}</div>
+                            <div className="testimonial-pfp-name" style={t.nameStyle}>
+                              {t.displayName || t.name}
+                            </div>
                             <div className="testimonial-pfp-designation">
                               {t.position}
                             </div>
