@@ -27,6 +27,18 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
       router.push("/about");
     }
   };
+
+  const handleWorkClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (pathname === "/work") return;
+    if (typeof (window as any).triggerPageTransition === "function") {
+      (window as any).triggerPageTransition("/work", () => {
+        router.push("/work");
+      });
+    } else {
+      router.push("/work");
+    }
+  };
   const svgRef = useRef<SVGSVGElement>(null);
   const navOverlayRef = useRef<HTMLDivElement>(null);
   const iconTlRef = useRef<gsap.core.Timeline | null>(null);
@@ -243,7 +255,11 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
       <nav className="navbar-wrap">
         {/* Left Navigation Capsule Buttons */}
         <div className="navbar-links">
-          <Link href="/#work" className="navbar-link-btn group cursor-pointer">
+          <Link
+            href="/work"
+            onClick={handleWorkClick}
+            className="navbar-link-btn group cursor-pointer"
+          >
             <span className="navlink-text">Work</span>
             <div className="stroke-fill">
               <div className="stroke-fill-code">
@@ -405,8 +421,11 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
       <div ref={navOverlayRef} className="ham-navbar">
         <div className="hamburger-links">
           <Link
-            href="/#work"
-            onClick={closeMenu}
+            href="/work"
+            onClick={(e) => {
+              closeMenu();
+              handleWorkClick(e);
+            }}
             className="navbar-link-btn group cursor-pointer"
           >
             <span className="navlink-text">Work</span>
