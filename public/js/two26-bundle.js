@@ -2246,6 +2246,21 @@ window.__two26LoaderDone = true;
           }
         }
 
+        const exploreTarget = e.target.closest(
+          ".project-btn, a[href='/work'].project-btn, a[href*='work'].project-btn",
+        );
+        if (exploreTarget) {
+          if (window.location.pathname.replace(/\/+$/, "") === "/work") {
+            e.preventDefault();
+            return;
+          }
+          if (typeof window.triggerPageTransition === "function") {
+            e.preventDefault();
+            window.triggerPageTransition("/work");
+            return;
+          }
+        }
+
         const closeTarget = e.target.closest(
           ".close-btn, [data-contact-close]",
         );

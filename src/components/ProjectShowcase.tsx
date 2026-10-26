@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import Link from "next/link";
+import { useRouter, usePathname } from "next/navigation";
 import { initCTAButtons } from "@/lib/buttonAnimations";
 
 interface ProjectItem {
@@ -79,7 +80,21 @@ const PROJECTS: ProjectItem[] = [
 ];
 
 export default function ProjectShowcase() {
+  const router = useRouter();
+  const pathname = usePathname();
   const sectionRef = useRef<HTMLElement>(null);
+
+  const handleExploreClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (pathname === "/work") return;
+    if (typeof (window as any).triggerPageTransition === "function") {
+      (window as any).triggerPageTransition("/work", () => {
+        router.push("/work");
+      });
+    } else {
+      router.push("/work");
+    }
+  };
 
   useEffect(() => {
     let cleanupFns: Array<() => void> = [];
@@ -692,7 +707,11 @@ export default function ProjectShowcase() {
               <div className="projects-pill-third">
                 <div className="hero-pill-text">Smart automation</div>
               </div>
-              <Link href="/work" className="project-btn w-inline-block">
+              <Link
+                href="/work"
+                onClick={handleExploreClick}
+                className="project-btn w-inline-block"
+              >
                 <div className="cta-text">Explore Portfolio</div>
                 <div className="cta-btn-arrow">
                   <div className="svg-arrow-cta">
