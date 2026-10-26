@@ -221,7 +221,7 @@ export default function ServicesSection() {
         }
       });
 
-      // 3. Create Master Scrubbed Timeline matching original two26.studio
+      // 3. Create Master Scrubbed Timeline matching original labibfohayer.studio
       const masterTl = gsap.timeline({
         scrollTrigger: {
           trigger: section,

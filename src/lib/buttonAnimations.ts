@@ -3,7 +3,7 @@
 import gsap from "gsap";
 
 /**
- * Authentic Two26 Studio Navbar Capsule Buttons Animation
+ * Authentic Labib Fohayer Navbar Capsule Buttons Animation
  * Animates the blooming SVG stroke path underneath .navlink-text
  */
 export function initNavbarBtns(container?: HTMLElement | Document | null): () => void {
@@ -111,7 +111,7 @@ export function initNavbarBtns(container?: HTMLElement | Document | null): () =>
 }
 
 /**
- * Authentic Two26 Studio CTA & Project Buttons Animation
+ * Authentic Labib Fohayer CTA & Project Buttons Animation
  * - Fill expansion: 10x scale radiating outward from circular arrow badge
  * - Arrow: Infinite looping spring bounce (-25deg -> 0deg back.out(2.5))
  * - Magnetic Physics: Jitter-free static origin cursor tracking

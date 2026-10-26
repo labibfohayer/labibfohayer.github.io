@@ -54,7 +54,7 @@ export default function AboutCapabilities() {
 
       const len = path.getTotalLength ? path.getTotalLength() : 1000;
 
-      // Set initial state matching two26 author script (drawSVG: 0% and strokeWidth: 0)
+      // Set initial state matching labib author script (drawSVG: 0% and strokeWidth: 0)
       if (DrawSVGPlugin) {
         gsap.set(path, { drawSVG: "0%", strokeWidth: 0 });
       } else {

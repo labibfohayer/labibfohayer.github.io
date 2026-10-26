@@ -114,7 +114,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Two26 Custom Typography Classes */
+/* Labib Custom Typography Classes */
 .font-nichrome {
   font-family: var(--font-primary);
 }
@@ -124,7 +124,7 @@ body {
 }
 
 /* ========================================================= */
-/* HEADER & NAVBAR EXACT TWO26 STYLES                        */
+/* HEADER & NAVBAR EXACT LABIB STYLES                        */
 /* ========================================================= */
 .header {
   z-index: 999;
@@ -1063,7 +1063,7 @@ body {
     display: none !important;
   }
 
-  /* Mobile Header / Two26 Hamburger Navigation */
+  /* Mobile Header / Labib Hamburger Navigation */
   .cta-wrap {
     display: none !important;
   }
@@ -1358,7 +1358,7 @@ body {
 
 
 
-  /* Contact Modal Mobile (Two26 Authentic) */
+  /* Contact Modal Mobile (Labib Authentic) */
   .contact-heading {
     font-size: 5em !important;
   }
@@ -1449,7 +1449,7 @@ body {
     font-size: clamp(2rem, 8.5vw, 3.4rem) !important;
   }
 
-  /* Two26 Contact Modal Portrait */
+  /* Labib Contact Modal Portrait */
   .contact-page {
     grid-column-gap: 0em !important;
     grid-row-gap: 0em !important;

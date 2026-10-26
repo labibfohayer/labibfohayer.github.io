@@ -374,7 +374,7 @@ export default function SliderShowcase() {
               loading="lazy"
               sizes="(max-width: 1200px) 100vw, 1200px"
               srcSet="/cdn-assets/6ab2633da8fa39ec5216880b_Shot%204-p-500.jpg 500w, /cdn-assets/6ab2633da8fa39ec5216880b_Shot%204-p-800.jpg 800w, /cdn-assets/6ab2633da8fa39ec5216880b_Shot%204-p-1080.jpg 1080w, /cdn-assets/6ab2633da8fa39ec5216880b_Shot%204.jpg 1200w"
-              alt="Two26 Showcase 4"
+              alt="Labib Showcase 4"
               className="showcase-slide-img"
               style={{
                 width: "100%",
@@ -392,7 +392,7 @@ export default function SliderShowcase() {
               loading="lazy"
               sizes="(max-width: 1200px) 100vw, 1200px"
               srcSet="/cdn-assets/6ab2633d3e5b6a35a15d74d7_Shot%205-p-500.jpg 500w, /cdn-assets/6ab2633d3e5b6a35a15d74d7_Shot%205-p-800.jpg 800w, /cdn-assets/6ab2633d3e5b6a35a15d74d7_Shot%205-p-1080.jpg 1080w, /cdn-assets/6ab2633d3e5b6a35a15d74d7_Shot%205.jpg 1200w"
-              alt="Two26 Showcase 5"
+              alt="Labib Showcase 5"
               className="showcase-slide-img"
               style={{
                 width: "100%",

@@ -110,7 +110,7 @@ export default function AboutSection() {
         });
       }
 
-      // Responsive scroll distance calculation matching Two26 original authentic values
+      // Responsive scroll distance calculation matching Labib original authentic values
       const getPinDistance = () => {
         const width = typeof window !== "undefined" ? window.innerWidth : 1440;
         if (width < 480) return 1150; // Mobile (< 480px)

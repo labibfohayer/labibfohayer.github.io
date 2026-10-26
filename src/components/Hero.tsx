@@ -133,7 +133,7 @@ export default function Hero({ onOpenContact }: HeroProps) {
     }
 
     // -------------------------------------------------------------
-    // 5. Build Master Hero Timeline (0.75x Speed matching Two26 original)
+    // 5. Build Master Hero Timeline (0.75x Speed matching Labib original)
     // -------------------------------------------------------------
     const heroTl = gsap
       .timeline({
@@ -311,7 +311,7 @@ export default function Hero({ onOpenContact }: HeroProps) {
                 overflow: visible;
               }
 
-              /* Line-by-line heading mask: matching Two26 original */
+              /* Line-by-line heading mask: matching Labib original */
               .hero-line-mask {
                 display: block !important;
                 overflow: hidden !important;

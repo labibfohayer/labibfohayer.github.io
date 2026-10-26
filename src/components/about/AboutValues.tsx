@@ -98,7 +98,7 @@ export default function AboutValues() {
 
     const triggers: any[] = [];
 
-    // 1. Progress Bar Synchronization (matching two26.studio inline_script_15)
+    // 1. Progress Bar Synchronization (matching labibfohayer.studio inline_script_15)
     cards.forEach((card, index) => {
       const progress = card.querySelector(".value-progress") as HTMLElement;
       if (!progress) return;

@@ -40,7 +40,7 @@ export default function RootLayout({
         <Script src="/js/CustomEase.min.js" strategy="beforeInteractive" />
         <Script src="/js/CustomBounce.min.js" strategy="beforeInteractive" />
         <Script src="/js/lenis.min.js" strategy="beforeInteractive" />
-        <Script src="/js/two26-bundle.js" strategy="afterInteractive" />
+        <Script src="/js/labibfohayer-bundle.js" strategy="afterInteractive" />
         {children}
       </body>
     </html>

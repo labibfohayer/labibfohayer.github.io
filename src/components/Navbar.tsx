@@ -43,7 +43,7 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
         }
       }
     } catch {
-      // Fallback to pre-calculated Two26 length
+      // Fallback to pre-calculated Labib length
     }
 
     const stemLen = 20.0;

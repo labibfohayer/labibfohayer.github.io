@@ -1,4 +1,4 @@
-/* Two26 Studio Production Animation Engine */
+/* Labib Fohayer Production Animation Engine */
 
 window.__two26LoaderDone = true;
 

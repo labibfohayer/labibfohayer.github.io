@@ -291,7 +291,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
         );
       }
 
-      // Step 4: Kinetic Heading Letter Pop & Settle (Two26 Authentic)
+      // Step 4: Kinetic Heading Letter Pop & Settle (Labib Authentic)
       if (headingChars.length) {
         headingChars.forEach((char, idx) => {
           const randomTilt = gsap.utils.random(-6, 6);
