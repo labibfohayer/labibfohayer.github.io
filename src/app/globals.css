@@ -522,10 +522,47 @@ body {
 }
 
 /* ========================================================= */
-/* PROJECTS END REVEAL TILT ADJUSTMENT                      */
+/* PROJECTS END REVEAL FLOATING CAPSULES REPOSITIONING      */
 /* ========================================================= */
+.projects-pill-first {
+  top: 0.2em !important;
+  right: -10.5em !important;
+  left: auto !important;
+  bottom: auto !important;
+  transform: rotate(-5deg) !important;
+}
+
+.projects-pill-second {
+  top: 5em !important;
+  left: -10.5em !important;
+  right: auto !important;
+  bottom: auto !important;
+  transform: rotate(3deg) !important;
+}
+
 .projects-pill-third {
+  top: 9.5em !important;
+  right: -11.5em !important;
+  left: auto !important;
+  bottom: auto !important;
   transform: rotate(-10deg) !important;
+}
+
+@media screen and (max-width: 1199px) and (min-width: 768px) {
+  .projects-pill-first {
+    top: -0.5em !important;
+    right: -4.5em !important;
+  }
+
+  .projects-pill-second {
+    top: 4.5em !important;
+    left: -5em !important;
+  }
+
+  .projects-pill-third {
+    top: 9em !important;
+    right: -5.5em !important;
+  }
 }
 
 /* ========================================================= */
