@@ -49,11 +49,9 @@ const TESTIMONIALS: Testimonial[] = [
   },
   {
     quote: "Better than we imagined",
-    name: "Monica Tantu",
-    position: "Co-Founder, Merci",
-    avatar: "/cdn-assets/6ab3d7f19cfd634776eaf212_Monica.jpg",
-    srcset:
-      "/cdn-assets/6ab3d7f19cfd634776eaf212_Monica-p-500.jpg 500w, /cdn-assets/6ab3d7f19cfd634776eaf212_Monica.jpg 800w",
+    name: "MH Atif",
+    position: "CEO, Urbanize",
+    avatar: "/images/mh-atif.jpg",
     review:
       "Working with Labib on our full-stack website was a great experience from start to finish. He is incredibly skilled and thoughtful. He brought workflow automation ideas we wouldn’t have thought of ourselves, saving us countless hours. You can tell he cares deeply about the code quality and the client's success.",
   },
