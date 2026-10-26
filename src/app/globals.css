@@ -502,6 +502,26 @@ body {
 }
 
 /* ========================================================= */
+/* TESTIMONIAL PROFILE IMAGE CIRCULAR CROP                   */
+/* ========================================================= */
+.testimonial-img-wrap {
+  border-radius: 50% !important;
+  overflow: hidden !important;
+  aspect-ratio: 1 / 1 !important;
+}
+
+.testimonial-img-wrap img,
+.testimonial-img-wrap .image {
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  aspect-ratio: 1 / 1 !important;
+  display: block !important;
+}
+
+/* ========================================================= */
 /* PROJECTS END REVEAL TILT ADJUSTMENT                      */
 /* ========================================================= */
 .projects-pill-third {

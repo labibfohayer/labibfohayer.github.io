@@ -18,9 +18,7 @@ const TESTIMONIALS: Testimonial[] = [
       "Working with Labib has been one of the smoothest collaborations I've had",
     name: "Sadiya Akter Suraiya",
     position: "CEO, Ponyopuri",
-    avatar: "/cdn-assets/6ab3d538dbdbc6a5f1d1d3f4_Rux.jpg",
-    srcset:
-      "/cdn-assets/6ab3d538dbdbc6a5f1d1d3f4_Rux-p-500.jpg 500w, /cdn-assets/6ab3d538dbdbc6a5f1d1d3f4_Rux.jpg 800w",
+    avatar: "/images/sadiya-akter-suraiya.jpg",
     review:
       "He is sharp, always responsive, and has a real talent for turning ideas into powerful websites. No matter the challenge: tight deadlines, complex coding requirements, or tricky automations, he always shows up with perfect solutions. Highly recommend working with him!",
   },
