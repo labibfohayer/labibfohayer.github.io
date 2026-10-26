@@ -24,11 +24,9 @@ const TESTIMONIALS: Testimonial[] = [
   },
   {
     quote: "Labib truly brought our digital vision to life",
-    name: "Luiza Zamfirescu",
-    position: "Co-Founder, HeyGluco",
-    avatar: "/cdn-assets/6ab3d1f99d28cf11d2e8f501_luiza.jpg",
-    srcset:
-      "/cdn-assets/6ab3d1f99d28cf11d2e8f501_luiza-p-500.jpg 500w, /cdn-assets/6ab3d1f99d28cf11d2e8f501_luiza.jpg 800w",
+    name: "Mawlana Omar Faruk",
+    position: "Chairman, Pioneer Study Care (PSC)",
+    avatar: "/images/mawlana-omar-faruk.jpg",
     review:
       "Labib is an amazing professional with an incredible amount of coding and automation talent. He took our ideas, understood them completely, and built a seamless web experience that went beyond anything we imagined. We feel incredibly lucky to have worked with him. Cannot recommend him highly enough!",
   },
