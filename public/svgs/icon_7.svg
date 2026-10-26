@@ -1,0 +1,6 @@
+<svg class="two26-toggle-svg" viewBox="-2 6.52 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="translate: none; rotate: none; scale: none; transform-origin: 50% 50%; transform: translate(0px, 0px);">
+    <!-- Looping Horseshoe -> Vertical Stem Path -->
+    <path class="orange-path" d="M7.01247 34.0204C7.01247 34.0204 10.1314 34.0204 20.8246 34.0204C31.5179 34.0204 31.2364 16.0204 20.8246 16.0205C10.4128 16.0205 9.00975 16.0196 9.00975 16.0196C5.0415 16.0196 2 12.8812 2 9.00979C2 5.13839 5.13839 2 9.00979 2C12.8679 2.01076 15.9893 5.1363 16 8.98937V34.5196" stroke="#FF5400" stroke-width="4" stroke-linecap="round" style="stroke-dasharray: 52.6, 111.029; stroke-dashoffset: 0;"></path>
+    <!-- Cross Bar (Left -> Right) -->
+    <path class="cross-path" d="M6 24.52H26" stroke="#FF5400" stroke-width="0" stroke-linecap="round" style="stroke-dasharray: 20, 20; stroke-dashoffset: 20; stroke-width: 0px;"></path>
+  </svg>

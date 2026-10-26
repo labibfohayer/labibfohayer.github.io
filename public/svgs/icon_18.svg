@@ -1,0 +1,51 @@
+<svg viewBox="0 0 1440 370" preserveAspectRatio="xMidYMid meet" style="width: 100%; height: auto; display: block; overflow: visible">
+  <defs>
+    <!-- Extended Text Curve (Extends to x:5000 so incoming text is pre-rendered with ZERO pop-in) -->
+    <path id="hero-marquee-curve" d="M-43.0867 292.81C179.631 174.299 464.078 116.458 712.699 90.6403C934.59 67.5984 1166.5 74.6231 1436.89 105.117 L 5000 507" fill="none"></path>
+
+    <!-- SVG Mask for Right-to-Left Text Reveal -->
+    <mask id="hero-marquee-text-mask" maskUnits="userSpaceOnUse">
+      <path class="hero-marquee-mask-path" d="M-43.0867 292.81C179.631 174.299 464.078 116.458 712.699 90.6403C934.59 67.5984 1166.5 74.6231 1436.89 105.117" stroke="#FFFFFF" stroke-width="220" stroke-linecap="round" stroke-linejoin="round" fill="none" style="stroke-dashoffset: -1512.73; stroke-dasharray: 0px, 999999px;"></path>
+    </mask>
+  </defs>
+
+  <!-- 1. Background Orange Ribbon Stroke -->
+  <path class="hero-marquee-bg" d="M-43.0867 292.81C179.631 174.299 464.078 116.458 712.699 90.6403C934.59 67.5984 1166.5 74.6231 1436.89 105.117" stroke="#FF5400" stroke-width="154" stroke-linecap="round" stroke-linejoin="round" fill="none" style="stroke-dashoffset: -1512.73; stroke-dasharray: 0px, 999999px;"></path>
+
+  <!-- 2. Text Group revealed via Stroke Mask -->
+  <g class="hero-marquee-text-group" mask="url(#hero-marquee-text-mask)">
+    <text class="hero-marquee-text" fill="#FFFFFF" dominant-baseline="central" alignment-baseline="central" font-size="80" font-weight="800" font-family="inherit" style="
+        letter-spacing: 0.04em;
+        user-select: none;
+        dominant-baseline: central;
+        alignment-baseline: central;
+      ">
+      <textPath href="#hero-marquee-curve" xlink:href="#hero-marquee-curve" class="hero-marquee-tp" startOffset="-372.675001" dominant-baseline="central" alignment-baseline="central">
+        <tspan class="marquee-unit" dominant-baseline="central" alignment-baseline="central">
+          LET’S MAKE IT MAKE SENSE &nbsp;•&nbsp; GOOD LOOKS INCLUDED &nbsp;•&nbsp;
+        </tspan>
+        <tspan dominant-baseline="central" alignment-baseline="central">
+          LET’S MAKE IT MAKE SENSE &nbsp;•&nbsp; GOOD LOOKS INCLUDED &nbsp;•&nbsp;
+        </tspan>
+        <tspan dominant-baseline="central" alignment-baseline="central">
+          LET’S MAKE IT MAKE SENSE &nbsp;•&nbsp; GOOD LOOKS INCLUDED &nbsp;•&nbsp;
+        </tspan>
+        <tspan dominant-baseline="central" alignment-baseline="central">
+          LET’S MAKE IT MAKE SENSE &nbsp;•&nbsp; GOOD LOOKS INCLUDED &nbsp;•&nbsp;
+        </tspan>
+        <tspan dominant-baseline="central" alignment-baseline="central">
+          LET’S MAKE IT MAKE SENSE &nbsp;•&nbsp; GOOD LOOKS INCLUDED &nbsp;•&nbsp;
+        </tspan>
+        <tspan dominant-baseline="central" alignment-baseline="central">
+          LET’S MAKE IT MAKE SENSE &nbsp;•&nbsp; GOOD LOOKS INCLUDED &nbsp;•&nbsp;
+        </tspan>
+        <tspan dominant-baseline="central" alignment-baseline="central">
+          LET’S MAKE IT MAKE SENSE &nbsp;•&nbsp; GOOD LOOKS INCLUDED &nbsp;•&nbsp;
+        </tspan>
+        <tspan dominant-baseline="central" alignment-baseline="central">
+          LET’S MAKE IT MAKE SENSE &nbsp;•&nbsp; GOOD LOOKS INCLUDED &nbsp;•&nbsp;
+        </tspan>
+      </textPath>
+    </text>
+  </g>
+</svg>
