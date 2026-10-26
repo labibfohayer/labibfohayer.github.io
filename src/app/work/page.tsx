@@ -22,6 +22,31 @@ export default function WorkPage() {
       oldScript.parentNode?.replaceChild(newScript, oldScript);
     });
 
+    const handleInitLenis = () => {
+      // If window.lenis exists but points to a detached element, destroy it
+      if (
+        (window as any).lenis &&
+        (window as any).lenis.dimensions &&
+        (window as any).lenis.dimensions.wrapper &&
+        !document.body.contains((window as any).lenis.dimensions.wrapper)
+      ) {
+        try {
+          (window as any).lenis.destroy();
+        } catch (e) {}
+        (window as any).lenis = null;
+      }
+
+      if (typeof (window as any).initLenis === "function") {
+        (window as any).initLenis();
+      }
+      if ((window as any).lenis) {
+        (window as any).lenis.resize();
+      }
+      if ((window as any).ScrollTrigger) {
+        (window as any).ScrollTrigger.refresh();
+      }
+    };
+
     // Ensure loader completes and animations trigger
     const completeLoader = () => {
       (window as any).__two26LoaderDone = true;
@@ -33,22 +58,42 @@ export default function WorkPage() {
       document.documentElement.style.overflow = "visible";
       document.dispatchEvent(new CustomEvent("two26:loaderComplete"));
 
-      if ((window as any).ScrollTrigger) {
-        (window as any).ScrollTrigger.refresh();
-      }
-      if ((window as any).lenis) {
-        (window as any).lenis.resize();
-      }
+      handleInitLenis();
     };
 
     // Trigger immediately and also on next ticks
     completeLoader();
     const t1 = setTimeout(completeLoader, 150);
-    const t2 = setTimeout(completeLoader, 500);
+    const t2 = setTimeout(completeLoader, 300);
+    const t3 = setTimeout(completeLoader, 600);
+
+    // Font ready & image loading triggers for Lenis & ScrollTrigger recalculation
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(handleInitLenis);
+    }
+
+    const imgs = containerRef.current.querySelectorAll("img");
+    imgs.forEach((img: HTMLImageElement) => {
+      if (!img.complete) {
+        img.addEventListener("load", handleInitLenis, { once: true });
+      }
+    });
 
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);
+      clearTimeout(t3);
+      if (
+        (window as any).lenis &&
+        (window as any).lenis.dimensions &&
+        containerRef.current &&
+        containerRef.current.contains((window as any).lenis.dimensions.wrapper)
+      ) {
+        try {
+          (window as any).lenis.destroy();
+        } catch (e) {}
+        (window as any).lenis = null;
+      }
     };
   }, []);
 
