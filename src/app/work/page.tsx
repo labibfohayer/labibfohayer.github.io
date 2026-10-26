@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import workData from "./workData.json";
+import { initCTAButtons } from "@/lib/buttonAnimations";
 
 export default function WorkPage() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -47,6 +48,18 @@ export default function WorkPage() {
       }
     };
 
+    const handleInitAnimations = () => {
+      if (typeof (window as any).initTwo26FooterAnimation === "function") {
+        (window as any).initTwo26FooterAnimation();
+      }
+      if (containerRef.current) {
+        initCTAButtons(containerRef.current);
+      }
+      if ((window as any).ScrollTrigger) {
+        (window as any).ScrollTrigger.refresh();
+      }
+    };
+
     // Ensure loader completes and animations trigger
     const completeLoader = () => {
       (window as any).__two26LoaderDone = true;
@@ -59,6 +72,7 @@ export default function WorkPage() {
       document.dispatchEvent(new CustomEvent("two26:loaderComplete"));
 
       handleInitLenis();
+      handleInitAnimations();
     };
 
     // Trigger immediately and also on next ticks
@@ -69,13 +83,23 @@ export default function WorkPage() {
 
     // Font ready & image loading triggers for Lenis & ScrollTrigger recalculation
     if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(handleInitLenis);
+      document.fonts.ready.then(() => {
+        handleInitLenis();
+        handleInitAnimations();
+      });
     }
 
     const imgs = containerRef.current.querySelectorAll("img");
     imgs.forEach((img: HTMLImageElement) => {
       if (!img.complete) {
-        img.addEventListener("load", handleInitLenis, { once: true });
+        img.addEventListener(
+          "load",
+          () => {
+            handleInitLenis();
+            handleInitAnimations();
+          },
+          { once: true },
+        );
       }
     });
 
@@ -93,6 +117,12 @@ export default function WorkPage() {
           (window as any).lenis.destroy();
         } catch (e) {}
         (window as any).lenis = null;
+      }
+      if ((window as any).ScrollTrigger) {
+        try {
+          (window as any).ScrollTrigger.getById("footer-logo-bounce")?.kill();
+          (window as any).ScrollTrigger.getById("footer-heading-reveal")?.kill();
+        } catch (e) {}
       }
     };
   }, []);
