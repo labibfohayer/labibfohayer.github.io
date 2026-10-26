@@ -33,11 +33,9 @@ const TESTIMONIALS: Testimonial[] = [
   {
     quote:
       "Working with Labib is like brainstorming ideas with a brilliant tech partner",
-    name: "Vlad Belcin",
-    position: "Sr. Copywriter, Dare Digital",
-    avatar: "/cdn-assets/6ab3d5ec9cfd634776e95758_Vlad.jpg",
-    srcset:
-      "/cdn-assets/6ab3d5ec9cfd634776e95758_Vlad-p-500.jpg 500w, /cdn-assets/6ab3d5ec9cfd634776e95758_Vlad.jpg 800w",
+    name: "Sharif Mohammad Nasrullah",
+    position: "Lecturer, As-Sunnah",
+    avatar: "/images/sharif-mohammad-nasrullah.jpg",
     review:
       "Always insightful and highly constructive. It hardly feels stressful, because his development process is so smooth and transparent. That's what you get when you hire an expert who knows both design and smart automation.",
   },
