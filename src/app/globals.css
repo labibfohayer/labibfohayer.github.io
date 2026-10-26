@@ -1571,4 +1571,96 @@ html.page-transitioning .page-transition-overlay {
   overflow: visible !important;
 }
 
+/* ==========================================================================
+   Projects Page GPU Acceleration & Layout Containment (144fps Fluidity)
+   ========================================================================== */
+
+/* 1. Central Illustration Parent Container Layout Isolation */
+.section-work-hero .work-hero-btm {
+  contain: layout;
+}
+
+.section-work-hero .cat-work-wrapper {
+  contain: layout;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.section-work-hero .cat-work-img {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* 2. Work Hero Heavy Animated Elements (Large Text, Floating Capsules, SVG Paths) */
+.section-work-hero .work-hero-text,
+.section-work-hero .work-hero-line-mask,
+.section-work-hero .work-hero-line,
+.section-work-hero .heading.left-align,
+.section-work-hero .heading.right-align,
+.section-work-hero h1 {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.section-work-hero .work-hero-pill,
+.section-work-hero .work-hero-pill.one,
+.section-work-hero .work-hero-pill.two,
+.section-work-hero .hero-pill-text,
+.section-work-hero .work-hero-pill-text-mask {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.section-work-hero .work-hero-path,
+.section-work-hero .work-hero-path svg,
+.section-work-hero .work-hero-path svg path {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.section-work-hero .work-hero-para,
+.section-work-hero .work-hero-para-line {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* 3. Projects Vertical Cards, Masks & Milestone Elements */
+.section-projects .project-card,
+.section-projects .project-card-clip-mask,
+.section-projects .project-card-img-wrap,
+.section-projects .project-card-img-wrap img,
+.section-projects .project-item {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.section-projects .projects-end,
+.section-projects .project-line-mask,
+.section-projects .project-line,
+.section-projects .projects-pill-first,
+.section-projects .projects-pill-second,
+.section-projects .projects-pill-third,
+.section-projects .projects-pill-fourth,
+.section-projects .project-btn {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+
 
