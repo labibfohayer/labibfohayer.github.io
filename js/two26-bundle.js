@@ -2246,6 +2246,27 @@ window.__two26LoaderDone = true;
           }
         }
 
+        const workTarget = e.target.closest(
+          "a[href='/work'], a[href='/work/'], a[href*='work'], a[href='/#work']",
+        );
+        if (
+          workTarget &&
+          (workTarget.classList.contains("navbar-link-btn") ||
+            workTarget.classList.contains("two26-mobile-nav-link") ||
+            workTarget.closest(".navbar-links") ||
+            workTarget.closest(".navbar-wrap"))
+        ) {
+          if (window.location.pathname.replace(/\/+$/, "") === "/work") {
+            e.preventDefault();
+            return;
+          }
+          if (typeof window.triggerPageTransition === "function") {
+            e.preventDefault();
+            window.triggerPageTransition("/work");
+            return;
+          }
+        }
+
         const exploreTarget = e.target.closest(
           ".project-btn, a[href='/work'].project-btn, a[href*='work'].project-btn",
         );
