@@ -5309,8 +5309,7 @@ gsap.registerPlugin(SplitText,ScrollTrigger,DrawSVGPlugin,MotionPathPlugin,Custo
           });
         }
 
-        gsap.ticker.fps(120);
-        gsap.ticker.lagSmoothing(500, 16);
+        gsap.ticker.lagSmoothing(0);
         if (window._lenisTicker) {
           gsap.ticker.remove(window._lenisTicker);
         }

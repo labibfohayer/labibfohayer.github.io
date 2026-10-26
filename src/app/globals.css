@@ -95,11 +95,18 @@
   }
 }
 
+html,
+body,
+.page,
+.main {
+  scroll-behavior: auto !important;
+  -webkit-overflow-scrolling: touch;
+}
+
 html {
   font-size: var(--size-font);
   background-color: #fae3e2;
   color: var(--brand-black);
-  scroll-behavior: auto;
 }
 
 body {
@@ -1518,6 +1525,49 @@ body {
   }
 }
 
+/* ==========================================================================
+   Hardware Acceleration & Scroll Optimization (144fps Zero-Lag Guardrails)
+   ========================================================================== */
+.main {
+  will-change: transform;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
+}
 
+.section-projects-work,
+.section-projects-work-wrapper,
+.prjs-work-item,
+.project-work-wrapper {
+  will-change: transform;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
+}
 
+.prj-transiton-cover,
+.prj-stroke,
+.prj-stroke svg {
+  pointer-events: none;
+  will-change: transform;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.footer-texture,
+.footer-overlay-bg {
+  pointer-events: none;
+  will-change: transform;
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
 
