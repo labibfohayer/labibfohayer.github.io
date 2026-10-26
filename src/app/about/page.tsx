@@ -46,21 +46,23 @@ export default function AboutPage() {
   }, []);
 
   return (
-    <div className="page lenis selection:bg-[#ff5400] selection:text-white relative">
+    <>
       <Navbar onOpenContact={() => setIsContactOpen(true)} />
-      <main className="main">
-        <AboutHero />
-        <AboutMoodboard />
-        <AboutValues />
-        <AboutCapabilities />
-        <Footer onOpenContact={() => setIsContactOpen(true)} />
-      </main>
+      <div className="page lenis selection:bg-[#ff5400] selection:text-white relative">
+        <main className="main">
+          <AboutHero />
+          <AboutMoodboard />
+          <AboutValues />
+          <AboutCapabilities />
+          <Footer onOpenContact={() => setIsContactOpen(true)} />
+        </main>
 
-      {/* Slide-In Direct Inquiry Drawer */}
-      <ContactModal
-        isOpen={isContactOpen}
-        onClose={() => setIsContactOpen(false)}
-      />
-    </div>
+        {/* Slide-In Direct Inquiry Drawer */}
+        <ContactModal
+          isOpen={isContactOpen}
+          onClose={() => setIsContactOpen(false)}
+        />
+      </div>
+    </>
   );
 }

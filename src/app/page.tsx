@@ -37,25 +37,25 @@ export default function Home() {
   return (
     <>
       <PageLoader />
-      <div className="page lenis selection:bg-[#ff5400] selection:text-white relative">
       <Navbar onOpenContact={() => setIsContactOpen(true)} />
-      <main className="main">
-        <Hero onOpenContact={() => setIsContactOpen(true)} />
-        <AboutSection />
-        <SliderShowcase />
-        <ProjectShowcase />
-        <ServicesSection />
-        <TestimonialsStack />
-        <FAQAccordion />
-        <Footer onOpenContact={() => setIsContactOpen(true)} />
-      </main>
+      <div className="page lenis selection:bg-[#ff5400] selection:text-white relative">
+        <main className="main">
+          <Hero onOpenContact={() => setIsContactOpen(true)} />
+          <AboutSection />
+          <SliderShowcase />
+          <ProjectShowcase />
+          <ServicesSection />
+          <TestimonialsStack />
+          <FAQAccordion />
+          <Footer onOpenContact={() => setIsContactOpen(true)} />
+        </main>
 
-      {/* Slide-In Direct Inquiry Drawer */}
-      <ContactModal
-        isOpen={isContactOpen}
-        onClose={() => setIsContactOpen(false)}
-      />
-    </div>
+        {/* Slide-In Direct Inquiry Drawer */}
+        <ContactModal
+          isOpen={isContactOpen}
+          onClose={() => setIsContactOpen(false)}
+        />
+      </div>
     </>
   );
 }
