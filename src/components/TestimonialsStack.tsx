@@ -41,11 +41,9 @@ const TESTIMONIALS: Testimonial[] = [
   },
   {
     quote: "Multiple web projects and counting",
-    name: "Ionut Belet",
-    position: "Founder, MVP Agency",
-    avatar: "/cdn-assets/6ab3d72a667c6ab560a03d5b_Ionut.jpg",
-    srcset:
-      "/cdn-assets/6ab3d72a667c6ab560a03d5b_Ionut-p-500.jpg 500w, /cdn-assets/6ab3d72a667c6ab560a03d5b_Ionut.jpg 800w",
+    name: "Jisan Khan",
+    position: "web developer",
+    avatar: "/images/jisan-khan.jpg",
     review:
       "We’ve worked together on custom web development and AI automation workflows, and it’s been a pleasure every time. Great logic, flawlessly executed code, and just a highly professional guy to work with. Pretty sure we’re not done yet.",
   },
