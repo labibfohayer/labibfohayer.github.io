@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import { useRouter, usePathname } from "next/navigation";
 import gsap from "gsap";
 import { initNavbarBtns, initCTAButtons } from "@/lib/buttonAnimations";
 
@@ -10,8 +11,22 @@ interface NavbarProps {
 }
 
 export default function Navbar({ onOpenContact }: NavbarProps) {
+  const router = useRouter();
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
+
+  const handleAboutClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (pathname === "/about") return;
+    if (typeof (window as any).triggerPageTransition === "function") {
+      (window as any).triggerPageTransition("/about", () => {
+        router.push("/about");
+      });
+    } else {
+      router.push("/about");
+    }
+  };
   const svgRef = useRef<SVGSVGElement>(null);
   const navOverlayRef = useRef<HTMLDivElement>(null);
   const iconTlRef = useRef<gsap.core.Timeline | null>(null);
@@ -252,7 +267,11 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
             </div>
           </Link>
 
-          <Link href="/about" className="navbar-link-btn group cursor-pointer">
+          <Link
+            href="/about"
+            onClick={handleAboutClick}
+            className="navbar-link-btn group cursor-pointer"
+          >
             <span className="navlink-text">About me</span>
             <div className="stroke-fill">
               <div className="stroke-fill-code">
@@ -415,7 +434,10 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
 
           <Link
             href="/about"
-            onClick={closeMenu}
+            onClick={(e) => {
+              closeMenu();
+              handleAboutClick(e);
+            }}
             className="navbar-link-btn group cursor-pointer"
           >
             <span className="navlink-text">About me</span>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import PageTransitionOverlay from "@/components/PageTransitionOverlay";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -35,8 +36,14 @@ export default function RootLayout({
       <head>
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="apple-touch-icon" href="/favicon.svg" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `if(typeof sessionStorage!=='undefined'&&sessionStorage.getItem('two26_transition_active')==='true'){document.documentElement.classList.add('page-transitioning');}`,
+          }}
+        />
       </head>
       <body className="body antialiased">
+        <PageTransitionOverlay />
         {/* Core GSAP Suite & jQuery */}
         <Script src="/js/jquery-3.5.1.min.dc5e7f18c8.js" strategy="beforeInteractive" />
         <Script src="/js/gsap.min.js" strategy="beforeInteractive" />

@@ -1571,3 +1571,39 @@ body {
   backface-visibility: hidden;
 }
 
+/* ==========================================================================
+   Page Transition Overlay (Exact Match with Let's Talk Transition Animation)
+   ========================================================================== */
+.page-transition-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 99999 !important;
+  display: none;
+  visibility: hidden;
+  pointer-events: none;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+}
+
+html.page-transitioning .page-transition-overlay {
+  display: flex !important;
+  visibility: visible !important;
+  background-color: #ff5400 !important;
+}
+
+.page-transition-overlay .svg-tcontact {
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none !important;
+}
+
+.page-transition-overlay .svg-tcontact svg {
+  width: 100% !important;
+  height: 100% !important;
+  overflow: visible !important;
+}
+
+

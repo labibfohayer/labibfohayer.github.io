@@ -2225,6 +2225,27 @@ window.__two26LoaderDone = true;
           return;
         }
 
+        const aboutTarget = e.target.closest(
+          "a[href='/about'], a[href='/about/'], a[href*='about']",
+        );
+        if (
+          aboutTarget &&
+          (aboutTarget.classList.contains("navbar-link-btn") ||
+            aboutTarget.classList.contains("two26-mobile-nav-link") ||
+            aboutTarget.closest(".navbar-links") ||
+            aboutTarget.closest(".navbar-wrap"))
+        ) {
+          if (window.location.pathname.replace(/\/+$/, "") === "/about") {
+            e.preventDefault();
+            return;
+          }
+          if (typeof window.triggerPageTransition === "function") {
+            e.preventDefault();
+            window.triggerPageTransition("/about");
+            return;
+          }
+        }
+
         const closeTarget = e.target.closest(
           ".close-btn, [data-contact-close]",
         );
