@@ -4689,6 +4689,24 @@ window.__two26LoaderDone = true;
       );
       if (!footer) return;
 
+      if (typeof ScrollTrigger !== "undefined") {
+        const oldHeading = ScrollTrigger.getById("footer-heading-reveal");
+        if (oldHeading) oldHeading.kill();
+        const oldLogo = ScrollTrigger.getById("footer-logo-bounce");
+        if (oldLogo) oldLogo.kill();
+
+        ScrollTrigger.getAll().forEach((st) => {
+          if (
+            st.trigger &&
+            (st.trigger === footer ||
+              footer.contains(st.trigger) ||
+              !document.body.contains(st.trigger))
+          ) {
+            st.kill();
+          }
+        });
+      }
+
       const footerBtm = footer.querySelector(".footer-btm");
       const footerHeadings = Array.from(
         footer.querySelectorAll(
@@ -4703,8 +4721,11 @@ window.__two26LoaderDone = true;
 
       footerHeadings.forEach((heading) => {
         let lines = [];
+        const existingLines = heading.querySelectorAll(".footer-heading-line");
 
-        if (typeof SplitText !== "undefined") {
+        if (existingLines.length > 0) {
+          lines = Array.from(existingLines);
+        } else if (typeof SplitText !== "undefined") {
           const split = new SplitText(heading, {
             type: "lines",
             linesClass: "footer-heading-line",
@@ -4738,6 +4759,7 @@ window.__two26LoaderDone = true;
           stagger: 0.1,
           ease: "back.out(1.6)",
           scrollTrigger: {
+            id: "footer-heading-reveal",
             trigger: footer,
             scroller: scrollerEl,
             start: "top 80%",
@@ -4756,6 +4778,7 @@ window.__two26LoaderDone = true;
       const footerLogo = footer.querySelector(".footer-btm") || footerBtm;
 
       if (footerLogo) {
+        gsap.killTweensOf(footerLogo);
         gsap.set(footerLogo, {
           scaleY: 0.15,
           transformOrigin: "bottom center",
@@ -4766,6 +4789,7 @@ window.__two26LoaderDone = true;
         let hasBounced = false;
 
         ScrollTrigger.create({
+          id: "footer-logo-bounce",
           trigger: footer,
           scroller: scrollerEl,
           start: "top bottom", // Starts when footer top enters bottom of viewport
@@ -4931,6 +4955,8 @@ window.__two26LoaderDone = true;
         });
       });
     }
+
+    window.initTwo26FooterAnimation = initTwo26FooterAnimation;
 
     if (document.readyState === "loading") {
       document.addEventListener("DOMContentLoaded", initTwo26FooterAnimation);
