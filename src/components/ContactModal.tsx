@@ -365,29 +365,17 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
         );
       }
 
-      // Step 8: Social capsules staggered entrance
+      // Step 8: Social capsules entrance (Static: no button motion or transforms)
       if (socialStack) {
-        const buttons = socialStack.querySelectorAll("a");
-        if (buttons.length) {
-          gsap.set(buttons, { opacity: 0, x: 24 });
-          openTl.to(
-            socialStack,
-            { opacity: 1, duration: 0.05 },
-            contentStart + 0.35
-          );
-          openTl.to(
-            buttons,
-            {
-              opacity: 1,
-              x: 0,
-              duration: 0.45,
-              stagger: 0.025,
-              ease: "back.out(1.8)",
-              clearProps: "transform",
-            },
-            contentStart + 0.38
-          );
-        }
+        openTl.to(
+          socialStack,
+          {
+            opacity: 1,
+            duration: 0.3,
+            ease: "power2.out",
+          },
+          contentStart + 0.35
+        );
       }
 
       // Step 9: Contact Hand Graphic Pop (Locked to bottom: 0)

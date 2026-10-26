@@ -913,10 +913,8 @@ body {
   text-decoration: none !important;
   white-space: nowrap !important;
   cursor: pointer !important;
-  transform: rotateX(0deg) !important;
-  transform-style: preserve-3d !important;
-  transition: transform 0.6s ease-in-out !important;
-  will-change: transform;
+  transform: none !important;
+  transition: none !important;
   box-sizing: border-box !important;
 }
 
@@ -935,7 +933,8 @@ body {
 }
 
 .contact-capsule-btn:hover {
-  transform: rotateX(360deg) !important;
+  transform: none !important;
+  transition: none !important;
   background-color: transparent !important;
   background: transparent !important;
   color: var(--brand-white, #FFFFFF) !important;
@@ -945,6 +944,8 @@ body {
 
 .contact-capsule-btn:active,
 .contact-capsule-btn:focus {
+  transform: none !important;
+  transition: none !important;
   background-color: transparent !important;
   background: transparent !important;
   color: var(--brand-white, #FFFFFF) !important;
