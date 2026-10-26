@@ -67,19 +67,17 @@ export default function WorkPage() {
       if (loader) {
         loader.style.display = "none";
       }
-      document.body.style.overflow = "visible";
-      document.documentElement.style.overflow = "visible";
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
       document.dispatchEvent(new CustomEvent("two26:loaderComplete"));
 
       handleInitLenis();
       handleInitAnimations();
     };
 
-    // Trigger immediately and also on next ticks
+    // Trigger immediately and once after layout settling
     completeLoader();
-    const t1 = setTimeout(completeLoader, 150);
-    const t2 = setTimeout(completeLoader, 300);
-    const t3 = setTimeout(completeLoader, 600);
+    const t1 = setTimeout(completeLoader, 250);
 
     // Font ready & image loading triggers for Lenis & ScrollTrigger recalculation
     if (document.fonts && document.fonts.ready) {
@@ -105,8 +103,6 @@ export default function WorkPage() {
 
     return () => {
       clearTimeout(t1);
-      clearTimeout(t2);
-      clearTimeout(t3);
       if (
         (window as any).lenis &&
         (window as any).lenis.dimensions &&
