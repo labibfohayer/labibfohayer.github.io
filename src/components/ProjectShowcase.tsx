@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import Link from "next/link";
 import { initCTAButtons } from "@/lib/buttonAnimations";
 
 interface ProjectItem {
@@ -691,7 +692,7 @@ export default function ProjectShowcase() {
               <div className="projects-pill-third">
                 <div className="hero-pill-text">Smart automation</div>
               </div>
-              <a href="/work" className="project-btn w-inline-block">
+              <Link href="/work" className="project-btn w-inline-block">
                 <div className="cta-text">Explore Portfolio</div>
                 <div className="cta-btn-arrow">
                   <div className="svg-arrow-cta">
@@ -713,7 +714,7 @@ export default function ProjectShowcase() {
                   </div>
                 </div>
                 <div className="cta-btn-fill-hover" />
-              </a>
+              </Link>
             </div>
           </div>
         </div>
