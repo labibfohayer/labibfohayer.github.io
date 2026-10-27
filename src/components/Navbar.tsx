@@ -7,7 +7,7 @@ import gsap from "gsap";
 import { initNavbarBtns, initCTAButtons } from "@/lib/buttonAnimations";
 
 interface NavbarProps {
-  onOpenContact: () => void;
+  onOpenContact?: () => void;
 }
 
 export default function Navbar({ onOpenContact }: NavbarProps) {
@@ -15,6 +15,18 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
+
+  const handleContactClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (pathname === "/contact") return;
+    if (typeof (window as any).triggerPageTransition === "function") {
+      (window as any).triggerPageTransition("/contact", () => {
+        router.push("/contact");
+      });
+    } else {
+      router.push("/contact");
+    }
+  };
 
   const handleAboutClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -338,7 +350,7 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
           </div>
           <div className="cta-wrap">
             <button
-              onClick={onOpenContact}
+              onClick={handleContactClick}
               className="cta-btn cursor-pointer"
             >
               <span className="cta-text">Let&apos;s Talk</span>
@@ -484,9 +496,9 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
 
           <div className="ham-cta">
             <button
-              onClick={() => {
+              onClick={(e) => {
                 closeMenu();
-                onOpenContact();
+                handleContactClick(e);
               }}
               className="cta-btn cursor-pointer"
             >

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 import { initCTAButtons } from "@/lib/buttonAnimations";
 
 interface FooterProps {
@@ -9,6 +10,18 @@ interface FooterProps {
 
 export default function Footer({ onOpenContact }: FooterProps) {
   const footerRef = useRef<HTMLElement>(null);
+  const router = useRouter();
+
+  const handleContactClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (typeof (window as any).triggerPageTransition === "function") {
+      (window as any).triggerPageTransition("/contact", () => {
+        router.push("/contact");
+      });
+    } else {
+      router.push("/contact");
+    }
+  };
 
   useEffect(() => {
     if (typeof (window as any).initTwo26FooterAnimation === "function") {
@@ -31,7 +44,7 @@ export default function Footer({ onOpenContact }: FooterProps) {
             </h2>
             <button
               type="button"
-              onClick={onOpenContact}
+              onClick={handleContactClick}
               className="cta-btn cursor-pointer"
             >
               <span className="cta-text">Let&apos;s talk</span>

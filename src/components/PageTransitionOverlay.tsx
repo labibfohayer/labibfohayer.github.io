@@ -126,6 +126,19 @@ export default function PageTransitionOverlay() {
       path.style.strokeDashoffset = `${totalLen}`;
 
       gsap.killTweensOf(path);
+      let navigated = false;
+      const doNavigate = () => {
+        if (navigated) return;
+        navigated = true;
+        if (navigateCallback) {
+          navigateCallback();
+        } else {
+          window.location.href = url;
+        }
+      };
+
+      const fallbackTimer = setTimeout(doNavigate, 750);
+
       // Sweep IN (0 -> 1600px) matching Let's Talk button transition
       gsap.fromTo(
         path,
@@ -136,11 +149,8 @@ export default function PageTransitionOverlay() {
           duration: 0.65,
           ease: "power2.inOut",
           onComplete: () => {
-            if (navigateCallback) {
-              navigateCallback();
-            } else {
-              window.location.href = url;
-            }
+            clearTimeout(fallbackTimer);
+            doNavigate();
           },
         }
       );

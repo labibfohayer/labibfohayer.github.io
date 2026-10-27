@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import AboutSection from "@/components/AboutSection";
@@ -10,11 +10,9 @@ import ServicesSection from "@/components/ServicesSection";
 import TestimonialsStack from "@/components/TestimonialsStack";
 import FAQAccordion from "@/components/FAQAccordion";
 import Footer from "@/components/Footer";
-import ContactModal from "@/components/ContactModal";
 import PageLoader from "@/components/PageLoader";
 
 export default function Home() {
-  const [isContactOpen, setIsContactOpen] = useState(false);
 
   useEffect(() => {
     const handleInit = () => {
@@ -37,24 +35,18 @@ export default function Home() {
   return (
     <>
       <PageLoader />
-      <Navbar onOpenContact={() => setIsContactOpen(true)} />
+      <Navbar />
       <div className="page lenis selection:bg-[#ff5400] selection:text-white relative">
         <main className="main">
-          <Hero onOpenContact={() => setIsContactOpen(true)} />
+          <Hero />
           <AboutSection />
           <SliderShowcase />
           <ProjectShowcase />
           <ServicesSection />
           <TestimonialsStack />
           <FAQAccordion />
-          <Footer onOpenContact={() => setIsContactOpen(true)} />
+          <Footer />
         </main>
-
-        {/* Slide-In Direct Inquiry Drawer */}
-        <ContactModal
-          isOpen={isContactOpen}
-          onClose={() => setIsContactOpen(false)}
-        />
       </div>
     </>
   );

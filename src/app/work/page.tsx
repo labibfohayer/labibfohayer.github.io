@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 import workData from "./workData.json";
 import { initCTAButtons } from "@/lib/buttonAnimations";
 
 export default function WorkPage() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -133,6 +135,20 @@ export default function WorkPage() {
       }
       if (containerRef.current) {
         initCTAButtons(containerRef.current);
+
+        const ctaBtns = containerRef.current.querySelectorAll(".cta-btn");
+        ctaBtns.forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            if (typeof (window as any).triggerPageTransition === "function") {
+              (window as any).triggerPageTransition("/contact", () => {
+                router.push("/contact");
+              });
+            } else {
+              router.push("/contact");
+            }
+          });
+        });
       }
       if ((window as any).ScrollTrigger) {
         (window as any).ScrollTrigger.refresh();

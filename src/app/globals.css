@@ -615,6 +615,20 @@ body {
   pointer-events: auto !important;
 }
 
+.contact-page.standalone-contact-page {
+  display: flex !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  background-color: #FF5400 !important;
+  position: relative !important;
+  min-height: 100vh !important;
+  min-height: 100svh !important;
+  width: 100% !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  z-index: 10 !important;
+}
+
 .contact-navbar {
   z-index: 99999 !important;
   justify-content: space-between !important;

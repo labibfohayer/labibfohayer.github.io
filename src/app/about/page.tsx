@@ -1,9 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import ContactModal from "@/components/ContactModal";
 import AboutHero from "@/components/about/AboutHero";
 import AboutMoodboard from "@/components/about/AboutMoodboard";
 import AboutValues from "@/components/about/AboutValues";
@@ -11,7 +10,6 @@ import AboutCapabilities from "@/components/about/AboutCapabilities";
 import "./about.css";
 
 export default function AboutPage() {
-  const [isContactOpen, setIsContactOpen] = useState(false);
 
   useEffect(() => {
     const handleInit = () => {
@@ -47,21 +45,15 @@ export default function AboutPage() {
 
   return (
     <>
-      <Navbar onOpenContact={() => setIsContactOpen(true)} />
+      <Navbar />
       <div className="page lenis selection:bg-[#ff5400] selection:text-white relative">
         <main className="main">
           <AboutHero />
           <AboutMoodboard />
           <AboutValues />
           <AboutCapabilities />
-          <Footer onOpenContact={() => setIsContactOpen(true)} />
+          <Footer />
         </main>
-
-        {/* Slide-In Direct Inquiry Drawer */}
-        <ContactModal
-          isOpen={isContactOpen}
-          onClose={() => setIsContactOpen(false)}
-        />
       </div>
     </>
   );
