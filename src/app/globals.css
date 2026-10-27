@@ -80,7 +80,7 @@
 /* Mobile Landscape */
 @media screen and (max-width: 767px) {
   :root {
-    --size-container-ideal: 390;
+    --size-container-ideal: 550;
     --size-container-min: 480px;
     --size-container-max: 767px;
   }
@@ -1263,43 +1263,45 @@ body {
   }
 
   .heading {
-    font-size: clamp(3rem, 11vw, 4.5em) !important;
-    line-height: 0.88 !important;
+    font-size: 5.5em !important;
+    line-height: 80% !important;
+    text-align: center !important;
+  }
+
+  .heading.left-align {
+    text-align: center !important;
+    padding-right: 0.123457em !important;
+  }
+
+  .heading.right-align {
     text-align: center !important;
   }
 
   .hero-path-svg-left {
-    max-width: 4em !important;
-    max-height: 15em !important;
-    top: 60% !important;
+    max-width: 8em !important;
+    max-height: 20em !important;
+    top: 50% !important;
     left: 0px !important;
-    transform: translate(0px, -50%) !important;
   }
 
   .hero-path-svg-right {
-    z-index: 0 !important;
-    max-width: 7em !important;
-    max-height: 13em !important;
-    top: 60% !important;
+    mix-blend-mode: normal !important;
+    max-width: 12em !important;
+    max-height: 16em !important;
     right: 0px !important;
-    transform: translate(0px, -50%) !important;
   }
 
-  /* Completely hide all floating capsule pills on mobile view (< 768px) */
-  .hero-pill,
-  .about-pill,
-  .projects-pill-first,
-  .projects-pill-second,
-  .projects-pill-third,
-  .projects-pill-fourth,
-  [class*="hero-pill"],
-  [class*="about-pill"],
-  [class*="projects-pill"] {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-  }
+  /* Authentic floating pills visible on mobile (scaled to 0.75em) */
+  .hero-pill.one { font-size: 0.75em !important; display: flex !important; visibility: visible !important; opacity: 1 !important; pointer-events: auto !important; }
+  .hero-pill.two { font-size: 0.75em !important; top: 20% !important; display: flex !important; visibility: visible !important; opacity: 1 !important; pointer-events: auto !important; }
+  .hero-pill.three { font-size: 0.75em !important; display: flex !important; visibility: visible !important; opacity: 1 !important; pointer-events: auto !important; }
+  .about-pill.first { font-size: 0.75em !important; display: flex !important; visibility: visible !important; opacity: 1 !important; pointer-events: auto !important; }
+  .about-pill.second { font-size: 0.75em !important; top: 22% !important; display: flex !important; visibility: visible !important; opacity: 1 !important; pointer-events: auto !important; }
+  .about-pill.third { font-size: 0.75em !important; bottom: 17% !important; display: flex !important; visibility: visible !important; opacity: 1 !important; pointer-events: auto !important; }
+  .projects-pill-first { font-size: 0.75em !important; top: 4em !important; right: 12em !important; display: flex !important; visibility: visible !important; opacity: 1 !important; pointer-events: auto !important; }
+  .projects-pill-second { font-size: 0.75em !important; top: 5em !important; display: flex !important; visibility: visible !important; opacity: 1 !important; pointer-events: auto !important; }
+  .projects-pill-third { font-size: 0.75em !important; bottom: 11em !important; display: flex !important; visibility: visible !important; opacity: 1 !important; pointer-events: auto !important; }
+  .projects-pill-fourth { font-size: 0.75em !important; display: flex !important; visibility: visible !important; opacity: 1 !important; pointer-events: auto !important; }
 
   /* About Section Mobile */
   .section-about {
@@ -1372,14 +1374,12 @@ body {
   }
 
   .projects-end-para {
-    font-size: clamp(2.4rem, 11vw, 3.5em) !important;
-    line-height: 0.88 !important;
-    max-width: 260px !important;
+    max-width: 9em !important;
+    font-size: 5em !important;
+    line-height: 85% !important;
     margin: 0 auto !important;
     text-align: center !important;
   }
-
-
 
   /* Contact Modal Mobile (Labib Authentic) */
   .contact-heading {
@@ -1406,17 +1406,34 @@ body {
 
   .service-block.one,
   .service-block.four {
-    right: 0% !important;
+    right: -27% !important;
   }
 
   .service-block.six {
-    right: 0% !important;
+    right: -17% !important;
+  }
+
+  .service-block-para-wrapper {
+    display: none !important;
+  }
+
+  .service-layer {
+    font-size: 0.4em !important;
+  }
+
+  .services-layers {
+    gap: 4.5em !important;
   }
 
   /* Testimonials Mobile */
   .testimonial-item {
-    min-width: 88vw !important;
-    max-width: 88vw !important;
+    min-width: 40em !important;
+    max-width: 40em !important;
+    font-size: 0.6em !important;
+  }
+
+  .testimonial-card-para {
+    max-width: 15em !important;
   }
 
   /* FAQ Mobile */
@@ -1425,51 +1442,687 @@ body {
   }
 
   .faq-left {
+    flex-flow: row !important;
     width: 100% !important;
+    height: auto !important;
     position: static !important;
   }
 
   .faq-right {
     width: 100% !important;
-    padding-left: 0 !important;
+    padding-top: 0px !important;
+    padding-left: 1.25em !important;
+  }
+
+  .cat-svg {
+    width: 34em !important;
   }
 
   .question-block {
-    width: 100% !important;
+    width: 75% !important;
   }
 
   .answer-block {
-    width: 100% !important;
+    width: 80% !important;
   }
 
   /* Footer Mobile */
   .footer {
-    height: auto !important;
-    min-height: 100svh !important;
-    padding-bottom: 2rem !important;
+    height: 100svh !important;
   }
 
   .footer-top {
     flex-direction: column !important;
-    gap: 2.5rem !important;
+    gap: 3em !important;
+    display: flex !important;
+  }
+
+  .footer-top-left {
+    flex-flow: column !important;
   }
 
   .footer-top-right {
-    align-items: flex-start !important;
+    gap: 2em !important;
+    flex-flow: column !important;
+    justify-content: space-between !important;
+    align-items: flex-end !important;
+    width: 100% !important;
+    max-width: none !important;
   }
 
   .footer-heading {
-    font-size: clamp(2rem, 8.5vw, 3.5rem) !important;
+    font-size: 2.5em !important;
   }
 }
 
 @media screen and (max-width: 479px) {
+  .section-hero {
+    justify-content: center !important;
+    align-items: flex-start !important;
+    display: flex !important;
+  }
+
+  .section-hero-wrapper {
+    gap: 0em !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    max-width: none !important;
+    min-height: 0px !important;
+    padding-top: 6em !important;
+    padding-bottom: 0px !important;
+  }
+
+  .cta-btn {
+    height: 2.25em !important;
+    min-height: 0px !important;
+  }
+
+  .hero-video-bg {
+    min-height: 20em !important;
+    max-height: 20em !important;
+    margin-bottom: 0px !important;
+    transform: scale(1.3) !important;
+  }
+
+  /* Heading: 4.5em = 72px at 390px */
   .heading {
-    font-size: clamp(2.8rem, 12vw, 4.2rem) !important;
+    font-size: 4.5em !important;
+    line-height: 80% !important;
+    text-align: center !important;
+  }
+
+  .heading.left-align {
+    width: 90% !important;
+    padding-left: 0.25em !important;
+    padding-right: 0.22em !important;
+    font-size: 4em !important;
+  }
+
+  .heading.right-align {
+    margin-left: 0px !important;
+    padding-left: 0px !important;
+    font-size: 4em !important;
+  }
+
+  .heading.right-align.less-max {
+    max-width: none !important;
+    font-size: 4em !important;
+  }
+
+  /* Floating Pills Mobile Positions */
+  .hero-pill.one {
+    top: 55% !important;
+    left: 7% !important;
+    font-size: 0.75em !important;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .hero-pill.two {
+    z-index: 3 !important;
+    justify-content: center !important;
+    align-items: center !important;
+    top: 24% !important;
+    font-size: 0.75em !important;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .hero-pill-text {
+    white-space: nowrap !important;
+    font-size: 0.85em !important;
+  }
+
+  .about-pill.first {
+    font-size: 0.75em !important;
+    top: 53% !important;
+    left: -5% !important;
+    transform: rotate(5deg) translate(50%, -50%) !important;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .about-pill.second {
+    font-size: 0.75em !important;
+    top: 18% !important;
+    right: 5% !important;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .about-pill.third {
+    font-size: 0.75em !important;
+    bottom: 12% !important;
+    right: -5% !important;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  /* Projects */
+  .projects-list {
+    gap: 3em !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  .project-card {
+    height: 35em !important;
+    gap: 1em !important;
   }
 
   .projects-end-para {
-    font-size: clamp(2rem, 8.5vw, 3.4rem) !important;
+    max-width: none !important;
+    font-size: 3.5em !important;
+    line-height: 85% !important;
+    text-align: center !important;
+    margin: 0 auto !important;
+  }
+
+  .projects-end-inner-wrapper {
+    max-width: 16em !important;
+  }
+
+  .projects-pill-first {
+    font-size: 0.75em !important;
+    top: 3em !important;
+    right: -3em !important;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .projects-pill-second {
+    font-size: 0.75em !important;
+    top: 11em !important;
+    left: -4em !important;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .projects-pill-third {
+    font-size: 0.75em !important;
+    bottom: 9em !important;
+    left: 3em !important;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .projects-pill-fourth {
+    font-size: 0.75em !important;
+    bottom: 5em !important;
+    right: 2em !important;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  /* Services Authentic Layout */
+  .section-services-wrapper {
+    gap: 2em !important;
+    padding-top: 5em !important;
+  }
+
+  .section-services-body {
+    justify-content: flex-start !important;
+    align-items: center !important;
+    min-height: 0px !important;
+    overflow: hidden !important;
+  }
+
+  .services-path-svg {
+    display: none !important;
+  }
+
+  .service-block.one {
+    gap: 0.35em !important;
+    flex-flow: wrap !important;
+    justify-content: center !important;
+    align-items: flex-end !important;
+    width: 60% !important;
+    right: -13% !important;
+    left: auto !important;
+  }
+
+  .service-block.two {
+    gap: 0.35em !important;
+    flex-flow: wrap !important;
+    justify-content: center !important;
+    align-items: flex-end !important;
+    width: 50% !important;
+    left: -15% !important;
+    right: auto !important;
+  }
+
+  .service-block.three {
+    gap: 0.35em !important;
+    flex-flow: wrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 50% !important;
+    right: -16% !important;
+    left: auto !important;
+  }
+
+  .service-block.four {
+    left: auto !important;
+    right: -3% !important;
+  }
+
+  .service-block.five {
+    gap: 0.35em !important;
+    flex-flow: wrap !important;
+    justify-content: center !important;
+    align-items: flex-end !important;
+    width: 65% !important;
+    display: flex !important;
+    position: relative !important;
+    left: auto !important;
+    right: -15% !important;
+  }
+
+  .service-block.six {
+    gap: 0.35em !important;
+    flex-flow: wrap !important;
+    justify-content: flex-start !important;
+    align-items: flex-end !important;
+    width: 75% !important;
+    right: -13% !important;
+    left: auto !important;
+  }
+
+  .service-block.seven {
+    gap: 0.35em !important;
+    flex-flow: wrap !important;
+    justify-content: center !important;
+    align-items: flex-end !important;
+    width: 50% !important;
+    left: 13% !important;
+    right: auto !important;
+  }
+
+  .service-svg {
+    width: 6em !important;
+    min-width: 6em !important;
+  }
+
+  .service-text {
+    font-size: 4.2em !important;
+  }
+
+  .service-layer {
+    width: 100% !important;
+    font-size: 0.7em !important;
+  }
+
+  .services-layers {
+    gap: 9em !important;
+    justify-content: center !important;
+    align-items: center !important;
+    height: auto !important;
+    padding-bottom: 5em !important;
+    top: 57% !important;
+  }
+
+  /* Testimonials */
+  .section-testimonials-wrapper {
+    padding-top: 5em !important;
+  }
+
+  .testimonial-heading {
+    font-size: 3.5em !important;
+  }
+
+  .testimonial-card {
+    gap: 4em !important;
+    padding: 2em !important;
+  }
+
+  .testimonial-item {
+    min-width: 34em !important;
+    max-width: 34em !important;
+    font-size: 0.55em !important;
+    top: 50% !important;
+    bottom: auto !important;
+    transform: translate(-50%, -50%) !important;
+  }
+
+  /* FAQ */
+  .section-faq-wrapper {
+    gap: 1em !important;
+    padding-top: 5em !important;
+    padding-bottom: 5em !important;
+  }
+
+  .question-block {
+    border-top-left-radius: 1em !important;
+    border-top-right-radius: 1em !important;
+    border-bottom-right-radius: 1em !important;
+    width: 75% !important;
+    padding: 1em !important;
+  }
+
+  .answer-block {
+    border-top-left-radius: 1em !important;
+    border-top-right-radius: 1em !important;
+    border-bottom-left-radius: 1em !important;
+    padding: 1em !important;
+  }
+
+  .cat-svg {
+    width: 24em !important;
+  }
+
+  /* Footer */
+  .footer {
+    justify-content: center !important;
+    align-items: stretch !important;
+    height: 100svh !important;
+    min-height: 0px !important;
+    margin-bottom: 0px !important;
+    padding-bottom: 0px !important;
+  }
+
+  .footer-heading {
+    font-size: 2.5em !important;
+  }
+
+  .footer-top {
+    gap: 3em !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+    height: 100% !important;
+    padding-left: 1.25em !important;
+    padding-right: 1.25em !important;
+  }
+
+  .footer-top-left {
+    max-width: 15em !important;
+  }
+
+  /* Work / Projects page mobile styles */
+  .section-work-hero {
+    justify-content: center !important;
+    align-items: flex-start !important;
+    display: flex !important;
+  }
+
+  .section-work-hero-wrapper {
+    gap: 0em !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    max-width: none !important;
+    min-height: 0px !important;
+    padding-top: 6em !important;
+    padding-bottom: 0px !important;
+  }
+
+  .work-hero-text {
+    z-index: 10 !important;
+    flex-flow: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin-bottom: 4em !important;
+    display: flex !important;
+  }
+
+  .work-hero-pill.one {
+    top: auto !important;
+    bottom: -16% !important;
+    left: 7% !important;
+    font-size: 0.75em !important;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .work-hero-pill.two {
+    top: 24% !important;
+    font-size: 0.75em !important;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .work-hero-para {
+    width: 100% !important;
+    min-width: 0px !important;
+    max-width: none !important;
+    margin-left: 12px !important;
+    margin-right: 0px !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+
+  .work-hero-btm {
+    gap: 0.25em !important;
+    justify-content: space-between !important;
+    align-items: flex-end !important;
+    padding-bottom: 5em !important;
+    padding-left: 1.25em !important;
+    padding-right: 1.25em !important;
+  }
+
+  .cat-work-wrapper {
+    width: 100% !important;
+    min-width: 12em !important;
+    max-width: 14em !important;
+  }
+
+  .work-hero-path {
+    z-index: 0 !important;
+    max-width: 6em !important;
+    max-height: 13em !important;
+    top: 30% !important;
+    right: 0px !important;
+    transform: translate(0px, -50%) !important;
+  }
+
+  .project-work-wrapper {
+    height: 50svh !important;
+    padding: 0.5em !important;
+  }
+
+  .project-info {
+    font-size: 0.5em !important;
+    inset: auto 5% 5% auto !important;
+  }
+
+  .heading-3 {
+    font-size: 3em !important;
+  }
+
+  .project-pill-text-small {
+    font-size: 1.15em !important;
+  }
+
+  /* About page mobile styles */
+  .section-about-hero {
+    justify-content: center !important;
+    align-items: flex-start !important;
+    display: flex !important;
+  }
+
+  .section-about-hero-wrapper {
+    gap: 0em !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    max-width: none !important;
+    min-height: 0px !important;
+    padding-top: 6em !important;
+    padding-bottom: 0px !important;
+  }
+
+  .about-hero-text {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+
+  .about-hero-path {
+    z-index: 0 !important;
+    max-width: 6em !important;
+    max-height: 13em !important;
+    display: none !important;
+    top: 30% !important;
+    right: 0px !important;
+    transform: translate(0px, -50%) !important;
+  }
+
+  .abput-para-wrapper {
+    gap: 3em !important;
+    padding-right: 0px !important;
+  }
+
+  .about-hero-svg-wrapper {
+    width: 60% !important;
+    min-width: 0px !important;
+  }
+
+  .about-hero-btm {
+    gap: 3em !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 3em 1.25em 0px !important;
+  }
+
+  .about-story-para {
+    font-size: 0.85em !important;
+  }
+
+  .about-story-heading {
+    font-size: 1.25em !important;
+    line-height: 90% !important;
+  }
+
+  .about-story-text {
+    font-size: 0.75em !important;
+  }
+
+  .about-story-right {
+    gap: 0.5em !important;
+    width: 65% !important;
+  }
+
+  .about-story-section {
+    gap: 0.5em !important;
+    padding-left: 1.25em !important;
+    padding-right: 1.25em !important;
+  }
+
+  .about-story-svg-wrap {
+    width: 35% !important;
+    min-width: 0px !important;
+  }
+
+  .about-story {
+    gap: 5em !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding-top: 9em !important;
+    padding-bottom: 9em !important;
+  }
+
+  .about-story-scroll-path {
+    transform: translate(-50%) !important;
+  }
+
+  .about-hero-img {
+    transform: none !important;
+  }
+
+  .about-team {
+    gap: 1em !important;
+    padding-top: 5em !important;
+  }
+
+  .about-team-btm {
+    gap: 1.5em !important;
+    flex-flow: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding-left: 0.5em !important;
+    padding-right: 0.5em !important;
+  }
+
+  .team-img-wrapper {
+    height: 28em !important;
+  }
+
+  .team-img-wrapper.big {
+    height: 24em !important;
+  }
+
+  .team-name {
+    font-size: 1.5em !important;
+  }
+
+  .team-sub {
+    font-size: 0.75em !important;
+  }
+
+  .team-card {
+    gap: 0.15em !important;
+    width: 80% !important;
+  }
+
+  .team-card.big {
+    width: 75% !important;
+    margin-top: 2em !important;
+  }
+
+  .what-we-do-cms {
+    padding-left: 0.5em !important;
+    padding-right: 0.5em !important;
+  }
+
+  .do-cms-list {
+    gap: 0.5em !important;
+  }
+
+  .do-cms--pill {
+    font-size: 0.75em !important;
+  }
+
+  .section-what-we-do-wrapper {
+    padding-top: 0px !important;
+  }
+
+  .section-values-wrapper {
+    padding-left: 0.5em !important;
+    padding-right: 0.5em !important;
+  }
+
+  .value-card {
+    gap: 1em !important;
+    min-height: 40vh !important;
+    max-height: 40vh !important;
+    padding-top: 1em !important;
+    padding-bottom: 5em !important;
+  }
+
+  .value-heading {
+    font-size: 3em !important;
+  }
+
+  .value-para {
+    max-width: 85% !important;
+    font-size: 0.85em !important;
+  }
+
+  .value-content {
+    gap: 2em !important;
+    flex-flow: column !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+  }
+
+  .value-text {
+    font-size: 1em !important;
   }
 
   /* Labib Contact Modal Portrait */
