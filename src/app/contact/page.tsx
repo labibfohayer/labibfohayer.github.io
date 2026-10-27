@@ -300,6 +300,38 @@ export default function ContactPage() {
       );
     }
 
+    // Safety completion callback & fallback timer to guarantee all elements are visible
+    const ensureAllVisible = () => {
+      if (content) gsap.set(content, { opacity: 1, y: 0 });
+      if (logo) gsap.set(logo, { scale: 1, opacity: 1 });
+      if (closeBtn) gsap.set(closeBtn, { scale: 1, opacity: 1, y: 0 });
+      if (socialStack) gsap.set(socialStack, { opacity: 1 });
+      if (img) gsap.set(img, { scale: 1, opacity: 1, x: 0, y: 0, rotation: 0 });
+      const currentChars = Array.from(
+        document.querySelectorAll<HTMLElement>(".contact-heading-char")
+      );
+      if (currentChars.length) {
+        currentChars.forEach((c) => {
+          gsap.set(c, { opacity: 1, scale: 1, rotation: 0, textShadow: "none" });
+        });
+      }
+      const currentPara = Array.from(
+        document.querySelectorAll<HTMLElement>(".contact-para-line")
+      );
+      if (currentPara.length) gsap.set(currentPara, { y: "0%", opacity: 1 });
+      const currentEmailWords = Array.from(
+        document.querySelectorAll<HTMLElement>(".contact-word")
+      );
+      if (currentEmailWords.length) gsap.set(currentEmailWords, { y: "0%", opacity: 1 });
+      const currentEmailLinks = Array.from(
+        document.querySelectorAll<HTMLElement>(".email-link")
+      );
+      if (currentEmailLinks.length) gsap.set(currentEmailLinks, { opacity: 1, y: 0 });
+    };
+
+    tl.eventCallback("onComplete", ensureAllVisible);
+    const safetyTimer = setTimeout(ensureAllVisible, 850);
+
     // Keyboard ESC listener
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -315,6 +347,7 @@ export default function ContactPage() {
     }
 
     return () => {
+      clearTimeout(safetyTimer);
       document.body.style.backgroundColor = "";
       window.removeEventListener("keydown", handleKeyDown);
       if (cleanNavbarBtns) cleanNavbarBtns();
@@ -496,6 +529,8 @@ export default function ContactPage() {
                 <img
                   src="/nichrome-question.png"
                   alt="?"
+                  loading="eager"
+                  {...({ fetchPriority: "high" } as any)}
                   style={{
                     width: "100%",
                     height: "100%",
@@ -595,7 +630,8 @@ export default function ContactPage() {
           src="/cdn-assets/6aaad679fdb9d914f7f5206b_contact.svg"
           alt="Let's Talk"
           className="contact-img"
-          loading="lazy"
+          loading="eager"
+          {...({ fetchPriority: "high" } as any)}
         />
       </div>
     </div>
