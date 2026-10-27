@@ -2205,14 +2205,34 @@ window.__two26LoaderDone = true;
       openTriggers.forEach((trigger) => {
         trigger.addEventListener("click", (e) => {
           e.preventDefault();
-          openContactModal();
+          if (window.location.pathname.replace(/\/+$/, "") === "/contact") return;
+          if (typeof window.triggerPageTransition === "function") {
+            window.triggerPageTransition("/contact", function () {
+              window.location.href = "/contact";
+            });
+          } else {
+            window.location.href = "/contact";
+          }
         });
       });
 
       if (closeBtn) {
         closeBtn.addEventListener("click", (e) => {
           e.preventDefault();
-          closeContactModal();
+          const targetUrl =
+            typeof document !== "undefined" &&
+            document.referrer &&
+            document.referrer.includes(window.location.host) &&
+            !document.referrer.endsWith("/contact")
+              ? document.referrer
+              : "/";
+          if (typeof window.triggerPageTransition === "function") {
+            window.triggerPageTransition(targetUrl, function () {
+              window.location.href = targetUrl;
+            });
+          } else {
+            window.location.href = targetUrl;
+          }
         });
       }
 
@@ -2221,7 +2241,14 @@ window.__two26LoaderDone = true;
         const ctaTarget = e.target.closest(".cta-btn, [data-contact-trigger]");
         if (ctaTarget && !ctaTarget.closest(".contact-page")) {
           e.preventDefault();
-          openContactModal();
+          if (window.location.pathname.replace(/\/+$/, "") === "/contact") return;
+          if (typeof window.triggerPageTransition === "function") {
+            window.triggerPageTransition("/contact", function () {
+              window.location.href = "/contact";
+            });
+          } else {
+            window.location.href = "/contact";
+          }
           return;
         }
 
@@ -2287,7 +2314,20 @@ window.__two26LoaderDone = true;
         );
         if (closeTarget) {
           e.preventDefault();
-          closeContactModal();
+          const targetUrl =
+            typeof document !== "undefined" &&
+            document.referrer &&
+            document.referrer.includes(window.location.host) &&
+            !document.referrer.endsWith("/contact")
+              ? document.referrer
+              : "/";
+          if (typeof window.triggerPageTransition === "function") {
+            window.triggerPageTransition(targetUrl, function () {
+              window.location.href = targetUrl;
+            });
+          } else {
+            window.location.href = targetUrl;
+          }
           return;
         }
       });
