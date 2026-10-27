@@ -1558,6 +1558,16 @@ window.__two26LoaderDone = true;
 /* === SCRIPT 11 === */
 (function () {
     function initTwo26ContactModal() {
+      // Standalone contact page guard: never hijack or reset the dedicated /contact route
+      if (
+        (typeof window !== "undefined" &&
+          (window.location.pathname.replace(/\/+$/, "").endsWith("/contact") ||
+           window.location.pathname.includes("/contact"))) ||
+        document.querySelector(".standalone-contact-page")
+      ) {
+        return;
+      }
+
       // 1. Defensive verification for GSAP & DrawSVG / SplitText
       if (typeof gsap === "undefined") return;
 
@@ -1795,6 +1805,15 @@ window.__two26LoaderDone = true;
       // 3. Reset All Elements to Fresh Initial State
       // -----------------------------------------------------------------
       function resetModalElements() {
+        if (
+          (typeof window !== "undefined" &&
+            (window.location.pathname.replace(/\/+$/, "").endsWith("/contact") ||
+             window.location.pathname.includes("/contact"))) ||
+          document.querySelector(".standalone-contact-page")
+        ) {
+          return;
+        }
+
         if (openTl) openTl.kill();
 
         // Ensure parent wrappers are fully visible and clean
@@ -2340,10 +2359,22 @@ window.__two26LoaderDone = true;
       });
     }
 
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", initTwo26ContactModal);
-    } else {
+    function safeInitTwo26ContactModal() {
+      if (
+        (typeof window !== "undefined" &&
+          (window.location.pathname.replace(/\/+$/, "").endsWith("/contact") ||
+           window.location.pathname.includes("/contact"))) ||
+        document.querySelector(".standalone-contact-page")
+      ) {
+        return;
+      }
       initTwo26ContactModal();
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", safeInitTwo26ContactModal);
+    } else {
+      safeInitTwo26ContactModal();
     }
   })();
 
