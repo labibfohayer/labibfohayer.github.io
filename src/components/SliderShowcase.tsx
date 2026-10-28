@@ -279,7 +279,7 @@ export default function SliderShowcase() {
             willChange: "transform",
           }}
         >
-          {/* Slide 1: Video (Replaced & Contained) */}
+          {/* Slide 1: Video (Replaced & Zoom to Fill) */}
           <div className="showcase-slide" style={{ flexShrink: 0 }}>
             <div
               className="showcase-slide-img w-background-video w-background-video-atom"
@@ -293,7 +293,7 @@ export default function SliderShowcase() {
                 loop
                 muted
                 playsInline
-                data-object-fit="contain"
+                data-object-fit="cover"
                 style={{
                   position: "absolute",
                   top: 0,
@@ -304,7 +304,7 @@ export default function SliderShowcase() {
                   margin: "auto",
                   width: "100%",
                   height: "100%",
-                  objectFit: "contain",
+                  objectFit: "cover",
                   display: "block",
                   zIndex: 1,
                   backgroundColor: "#000000",
