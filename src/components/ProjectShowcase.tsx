@@ -14,18 +14,20 @@ interface ProjectItem {
   mainImg: string;
   hoverImg: string;
   color: string;
+  alt?: string;
 }
 
 const PROJECTS: ProjectItem[] = [
   {
-    id: "heygluco",
-    name: "HeyGluco",
-    detail: "Health & Wellness",
-    href: "/work/heygluco",
-    logo: "/cdn-assets/6ab266d33e964df940c04833_HeyGluco.png",
-    mainImg: "/cdn-assets/6ab392697fe7cc9c077d1bb5_HeyGluco_2_hover.jpg",
-    hoverImg: "/cdn-assets/6ab393770c697e34bcc4e4fb_Vertical6.jpg",
-    color: "rgb(253, 225, 253)",
+    id: "webpulse-bot",
+    name: "Webpulse Bot",
+    detail: "AI Chatbot & Automation",
+    href: "/work/webpulse-bot",
+    logo: "/projects/webpulse-bot-hover.jpg",
+    mainImg: "/projects/webpulse-bot-static.jpg",
+    hoverImg: "/projects/webpulse-bot-hover.jpg",
+    color: "rgb(0, 163, 255)",
+    alt: "Webpulse Bot - AI Automation",
   },
   {
     id: "bagel-bar",
@@ -531,7 +533,7 @@ export default function ProjectShowcase() {
                         <img
                           src={project.hoverImg}
                           loading="lazy"
-                          alt={project.name}
+                          alt={project.alt || project.name}
                           className="project-img-hover"
                           style={{ display: "none" }}
                         />
@@ -579,7 +581,7 @@ export default function ProjectShowcase() {
                         <img
                           src={project.mainImg}
                           loading="lazy"
-                          alt={project.name}
+                          alt={project.alt || project.name}
                           className="project-img"
                         />
                         {/* Clip Mask Overlay SVG */}
@@ -640,7 +642,7 @@ export default function ProjectShowcase() {
                           <img
                             src={project.logo}
                             loading="lazy"
-                            alt={project.name}
+                            alt={project.alt || project.name}
                             className="project-logo-img"
                           />
                         </div>
