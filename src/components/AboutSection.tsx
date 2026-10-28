@@ -235,14 +235,36 @@ export default function AboutSection() {
 
       // ==========================================
       // MOBILE: (max-width: 768px)
-      // STABILIZED JITTER-FREE LOGIC
+      // 100% JITTER-FREE NO-SCRUB LOGIC
       // ==========================================
       mm.add("(max-width: 768px)", () => {
-        // 1. Hardware acceleration on pinned container
-        gsap.set(section, {
-          willChange: "transform",
-          backfaceVisibility: "hidden",
-          force3D: true,
+        // 1. Force hardware acceleration on mobile animation wrappers
+        const wrappers = [
+          section,
+          section.querySelector(".section-about-wrapper"),
+          section.querySelector(".about-pinned"),
+          section.querySelector(".about-split-container"),
+          section.querySelector(".about-text-col"),
+          para,
+        ];
+        wrappers.forEach((el) => {
+          if (el) {
+            gsap.set(el, {
+              willChange: "transform, opacity",
+              transform: "translate3d(0, 0, 0)",
+              backfaceVisibility: "hidden",
+              force3D: true,
+            });
+          }
+        });
+
+        section.querySelectorAll(".about-word").forEach((w) => {
+          gsap.set(w, {
+            willChange: "transform, opacity",
+            transform: "translate3d(0, 0, 0)",
+            backfaceVisibility: "hidden",
+            force3D: true,
+          });
         });
 
         // 2. Set Initial State for mobile characters: Stable, fixed scale 1, no rotation, no heavy textShadow
@@ -271,93 +293,53 @@ export default function AboutSection() {
 
         const scrollerEl = document.querySelector(".page") || window;
 
-        // 4. Create Mobile Pinned Timeline with jitter-free scroll configuration
+        // 4. Create Mobile Self-Running Timeline (NO SCRUB, NO PINNING LAG)
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: section,
             scroller: scrollerEl,
-            start: "top top",
-            end: "+=1150",
-            pin: section,
-            pinSpacing: true,
-            pinType: "transform",
-            scrub: 0.35,
-            anticipatePin: 0,
-            fastScrollEnd: true,
-            preventOverlaps: true,
+            start: "top 75%",
+            toggleActions: "play none none reverse",
             invalidateOnRefresh: false,
           },
         });
 
-        const totalChars = charElements.length;
-        const letterAnimSpan = 85;
+        // Glowing orange wave reveal into solid black
+        tl.to(
+          charElements,
+          {
+            color: "#FF5400",
+            duration: 0.25,
+            stagger: 0.008,
+            ease: "power1.out",
+          },
+          0
+        );
 
-        charElements.forEach((char, i) => {
-          const startTime = (i / totalChars) * letterAnimSpan;
+        tl.to(
+          charElements,
+          {
+            color: "#000000",
+            duration: 0.35,
+            stagger: 0.008,
+            ease: "power1.inOut",
+          },
+          0.15
+        );
 
-          // Stage 1: Glowing vibrant orange wave reveal (100% stable, zero layout shift)
+        // 5. Pop-in Pills smoothly
+        if (pills.length) {
           tl.to(
-            char,
-            {
-              color: "#FF5400",
-              duration: 3.5,
-              ease: "power1.out",
-            },
-            startTime
-          );
-
-          // Stage 2: Settle to solid black #000000
-          tl.to(
-            char,
-            {
-              color: "#000000",
-              duration: 3.5,
-              ease: "power1.inOut",
-            },
-            startTime + 3.5
-          );
-        });
-
-        // 5. Pop-in Pills at milestones
-        if (pills[0]) {
-          tl.to(
-            pills[0],
+            pills,
             {
               opacity: 1,
               scale: 1,
               y: 0,
-              duration: 6,
-              ease: "back.out(2)",
+              duration: 0.6,
+              stagger: 0.15,
+              ease: "back.out(1.7)",
             },
-            35
-          );
-        }
-
-        if (pills[1]) {
-          tl.to(
-            pills[1],
-            {
-              opacity: 1,
-              scale: 1,
-              y: 0,
-              duration: 6,
-              ease: "back.out(2)",
-            },
-            72
-          );
-        }
-
-        if (pills[2]) {
-          tl.to(
-            pills[2],
-            {
-              opacity: 1,
-              scale: 1,
-              y: 0,
-              duration: 6,
-              ease: "back.out(2)",
-            },
-            96
+            0.4
           );
         }
       });
