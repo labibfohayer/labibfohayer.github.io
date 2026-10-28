@@ -1295,9 +1295,10 @@ body {
   .hero-pill.one { font-size: 0.75em !important; display: flex !important; visibility: visible !important; opacity: 1 !important; pointer-events: auto !important; }
   .hero-pill.two { font-size: 0.75em !important; top: 20% !important; display: flex !important; visibility: visible !important; opacity: 1 !important; pointer-events: auto !important; }
   .hero-pill.three { font-size: 0.75em !important; display: flex !important; visibility: visible !important; opacity: 1 !important; pointer-events: auto !important; }
-  .about-pill.first { font-size: 0.75em !important; display: flex !important; visibility: visible !important; opacity: 1 !important; pointer-events: auto !important; }
-  .about-pill.second { font-size: 0.75em !important; top: 22% !important; display: flex !important; visibility: visible !important; opacity: 1 !important; pointer-events: auto !important; }
-  .about-pill.third { font-size: 0.75em !important; bottom: 17% !important; display: flex !important; visibility: visible !important; opacity: 1 !important; pointer-events: auto !important; }
+  .about-pill,
+  .about-pill.first,
+  .about-pill.second,
+  .about-pill.third { display: none !important; visibility: hidden !important; opacity: 0 !important; pointer-events: none !important; }
   .projects-pill-first { font-size: 0.75em !important; top: 4em !important; right: 12em !important; display: flex !important; visibility: visible !important; opacity: 1 !important; pointer-events: auto !important; }
   .projects-pill-second { font-size: 0.75em !important; top: 5em !important; display: flex !important; visibility: visible !important; opacity: 1 !important; pointer-events: auto !important; }
   .projects-pill-third { font-size: 0.75em !important; bottom: 11em !important; display: flex !important; visibility: visible !important; opacity: 1 !important; pointer-events: auto !important; }
@@ -1575,32 +1576,13 @@ body {
     font-size: 0.85em !important;
   }
 
-  .about-pill.first {
-    font-size: 0.75em !important;
-    top: 53% !important;
-    left: -5% !important;
-    transform: rotate(5deg) translate(50%, -50%) !important;
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-  }
-
-  .about-pill.second {
-    font-size: 0.75em !important;
-    top: 18% !important;
-    right: 5% !important;
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-  }
-
+  .about-pill.first,
+  .about-pill.second,
   .about-pill.third {
-    font-size: 0.75em !important;
-    bottom: 12% !important;
-    right: -5% !important;
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
   }
 
   /* Projects */

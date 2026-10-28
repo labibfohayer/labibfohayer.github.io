@@ -279,15 +279,13 @@ export default function AboutSection() {
           backfaceVisibility: "hidden",
         });
 
-        // 3. Set Initial State for pills: Hidden, shifted down
+        // 3. Set Initial State for pills: Completely hidden on mobile to prevent overlapping photo/text
         if (pills.length) {
           gsap.set(pills, {
+            display: "none",
+            visibility: "hidden",
             opacity: 0,
-            scale: 0.8,
-            y: 20,
-            transformOrigin: "center center",
-            willChange: "transform, opacity",
-            backfaceVisibility: "hidden",
+            pointerEvents: "none",
           });
         }
 
@@ -326,22 +324,6 @@ export default function AboutSection() {
           },
           0.15
         );
-
-        // 5. Pop-in Pills smoothly
-        if (pills.length) {
-          tl.to(
-            pills,
-            {
-              opacity: 1,
-              scale: 1,
-              y: 0,
-              duration: 0.6,
-              stagger: 0.15,
-              ease: "back.out(1.7)",
-            },
-            0.4
-          );
-        }
       });
 
       // Refresh ScrollTrigger to ensure pin start/end are exact
