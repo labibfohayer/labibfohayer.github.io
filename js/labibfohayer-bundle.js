@@ -3530,7 +3530,12 @@ window.__two26LoaderDone = true;
           baseImg.style.display = "block";
           baseImg.style.width = "100%";
           baseImg.style.height = "100%";
-          baseImg.style.objectFit = "cover";
+          if (
+            baseImg.style.objectFit !== "contain" &&
+            baseImg.getAttribute("data-object-fit") !== "contain"
+          ) {
+            baseImg.style.objectFit = "cover";
+          }
           baseImg.style.objectPosition = "center";
         }
 
@@ -3614,6 +3619,14 @@ window.__two26LoaderDone = true;
 
           // If hover image was still loading when initialized, update SVG image on load
           const svgImg = maskSvg.querySelector("image");
+          if (
+            svgImg &&
+            baseImg &&
+            (baseImg.style.objectFit === "contain" ||
+              baseImg.getAttribute("data-object-fit") === "contain")
+          ) {
+            svgImg.setAttribute("preserveAspectRatio", "xMidYMid meet");
+          }
           if (!hoverImg.complete) {
             hoverImg.addEventListener("load", () => {
               const freshSrc =
