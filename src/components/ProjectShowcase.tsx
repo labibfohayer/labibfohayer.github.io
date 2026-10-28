@@ -17,6 +17,8 @@ interface ProjectItem {
   alt?: string;
   target?: string;
   rel?: string;
+  objectFit?: "cover" | "contain";
+  bgColor?: string;
 }
 
 const PROJECTS: ProjectItem[] = [
@@ -34,14 +36,19 @@ const PROJECTS: ProjectItem[] = [
     rel: "noopener noreferrer",
   },
   {
-    id: "bagel-bar",
-    name: "THE BAGEL BAR",
-    detail: "Food & Beverage",
-    href: "/work/bagel-bar",
-    logo: "/cdn-assets/6ab2675e0b996d1415be46a3_The Bagel Bar.png",
-    mainImg: "/cdn-assets/6ab270be80849a0a23faa24d_6ab27078c47da30c0af6b000_Bagel_1.jpeg",
-    hoverImg: "/cdn-assets/6ab270be80849a0a23faa24a_6ab2707cc2a53666310f52d2_Bagel_2_hover.jpeg",
-    color: "rgb(26, 84, 228)",
+    id: "portfolio-website",
+    name: "Portfolio Website",
+    detail: "WEB DESIGN",
+    href: "https://labibfohayer.github.io/",
+    logo: "/favicon.svg",
+    mainImg: "/projects/portfolio-website-static.png",
+    hoverImg: "/projects/portfolio-website-hover.png",
+    color: "#FF5400",
+    alt: "Portfolio Website - Web Design",
+    target: "_blank",
+    rel: "noopener noreferrer",
+    objectFit: "contain",
+    bgColor: "#F9E1E0",
   },
   {
     id: "tanti-maria",
@@ -534,14 +541,29 @@ export default function ProjectShowcase() {
                       rel={project.rel}
                       className="project-card w-inline-block"
                     >
-                      <div className="project-card-img-wrapper">
+                      <div
+                        className="project-card-img-wrapper"
+                        style={project.bgColor ? { backgroundColor: project.bgColor } : undefined}
+                      >
                         {/* Hover image */}
                         <img
                           src={project.hoverImg}
-                          loading="lazy"
+                          loading="eager"
                           alt={project.alt || project.name}
                           className="project-img-hover"
-                          style={{ display: "none" }}
+                          data-object-fit={project.objectFit || "cover"}
+                          style={{
+                            display: "none",
+                            ...(project.objectFit === "contain"
+                              ? {
+                                  objectFit: "contain",
+                                  objectPosition: "center center",
+                                  minWidth: "auto",
+                                  width: "100%",
+                                  height: "100%",
+                                }
+                              : {}),
+                          }}
                         />
                         {/* Vector path overlay */}
                         <div
@@ -586,9 +608,21 @@ export default function ProjectShowcase() {
                         {/* Main Cover image */}
                         <img
                           src={project.mainImg}
-                          loading="lazy"
+                          loading="eager"
                           alt={project.alt || project.name}
                           className="project-img"
+                          data-object-fit={project.objectFit || "cover"}
+                          style={
+                            project.objectFit === "contain"
+                              ? {
+                                  objectFit: "contain",
+                                  objectPosition: "center center",
+                                  minWidth: "auto",
+                                  width: "100%",
+                                  height: "100%",
+                                }
+                              : undefined
+                          }
                         />
                         {/* Clip Mask Overlay SVG */}
                         <svg
@@ -636,7 +670,11 @@ export default function ProjectShowcase() {
                             y="0"
                             width="709"
                             height="1012"
-                            preserveAspectRatio="xMidYMid slice"
+                            preserveAspectRatio={
+                              project.objectFit === "contain"
+                                ? "xMidYMid meet"
+                                : "xMidYMid slice"
+                            }
                             mask={`url(#project-mask-${index})`}
                           />
                         </svg>
