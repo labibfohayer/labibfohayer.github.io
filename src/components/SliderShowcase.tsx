@@ -279,36 +279,45 @@ export default function SliderShowcase() {
             willChange: "transform",
           }}
         >
-          {/* Slide 1: Video (Tennis / Orb) */}
+          {/* Slide 1: Video (Replaced & Contained) */}
           <div className="showcase-slide" style={{ flexShrink: 0 }}>
             <div
               className="showcase-slide-img w-background-video w-background-video-atom"
               data-autoplay="true"
               data-loop="true"
               data-wf-ignore="true"
-              style={{ width: "100%", height: "100%", position: "relative" }}
+              style={{ width: "100%", height: "100%", position: "relative", backgroundColor: "#000000" }}
             >
               <video
                 autoPlay
                 loop
                 muted
                 playsInline
-                data-object-fit="cover"
+                data-object-fit="contain"
                 style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  inset: 0,
+                  margin: "auto",
                   width: "100%",
                   height: "100%",
-                  objectFit: "cover",
+                  objectFit: "contain",
                   display: "block",
+                  zIndex: 1,
+                  backgroundColor: "#000000",
                 }}
-                poster="/cdn-assets/6ab26381b5a759b6db4cec12_Shot%201_poster.0000000.jpg"
+                poster="/videos/new-vdo-poster.jpg"
               >
                 <source
-                  src="/cdn-assets/6ab26381b5a759b6db4cec12_Shot%201_mp4.mp4"
+                  src="/home/labib-fohayer/Downloads/New vdo.mp4"
                   type="video/mp4"
                 />
                 <source
-                  src="/cdn-assets/6ab26381b5a759b6db4cec12_Shot%201_webm.webm"
-                  type="video/webm"
+                  src="/videos/new-vdo.mp4"
+                  type="video/mp4"
                 />
               </video>
             </div>
