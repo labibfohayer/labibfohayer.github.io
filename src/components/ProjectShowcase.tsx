@@ -15,6 +15,8 @@ interface ProjectItem {
   hoverImg: string;
   color: string;
   alt?: string;
+  target?: string;
+  rel?: string;
 }
 
 const PROJECTS: ProjectItem[] = [
@@ -22,12 +24,14 @@ const PROJECTS: ProjectItem[] = [
     id: "webpulse-bot",
     name: "Webpulse Bot",
     detail: "AI Chatbot & Automation",
-    href: "/work/webpulse-bot",
+    href: "https://www.facebook.com/webpulseautomation",
     logo: "/projects/webpulse-bot-hover.jpg",
     mainImg: "/projects/webpulse-bot-static.jpg",
     hoverImg: "/projects/webpulse-bot-hover.jpg",
     color: "rgb(0, 163, 255)",
     alt: "Webpulse Bot - AI Automation",
+    target: "_blank",
+    rel: "noopener noreferrer",
   },
   {
     id: "bagel-bar",
@@ -526,6 +530,8 @@ export default function ProjectShowcase() {
                   <div className="project-card-clip-mask">
                     <a
                       href={project.href}
+                      target={project.target}
+                      rel={project.rel}
                       className="project-card w-inline-block"
                     >
                       <div className="project-card-img-wrapper">
