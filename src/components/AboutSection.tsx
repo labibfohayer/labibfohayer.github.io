@@ -79,148 +79,288 @@ export default function AboutSection() {
 
       const pills = Array.from(section.querySelectorAll(".about-pill")) as HTMLElement[];
 
-      // 1. Hardware acceleration & anti-blur on pinned container
-      gsap.set(section, {
-        willChange: "transform",
-        backfaceVisibility: "hidden",
-        force3D: true,
-      });
+      // Prevent mobile address-bar resize jumps
+      ScrollTrigger.config({ ignoreMobileResize: true });
 
-      // 2. Set Initial State for all characters: Pale peach/orange
-      gsap.set(charElements, {
-        color: "rgba(255, 84, 0, 0.45)",
-        scale: 1,
-        rotation: 0,
-        display: "inline-block",
-        transformOrigin: "center center",
-        textShadow: "0px 0px 0px rgba(255,84,0,0)",
-        willChange: "transform, color",
-        backfaceVisibility: "hidden",
-      });
+      const mm = gsap.matchMedia();
 
-      // 3. Set Initial State for pills: Hidden, scaled down, shifted down
-      if (pills.length) {
-        gsap.set(pills, {
-          opacity: 0,
-          scale: 0.6,
-          y: 24,
+      // ==========================================
+      // DESKTOP: (min-width: 769px)
+      // 100% EXACT EXISTING CODE - UNTOUCHED
+      // ==========================================
+      mm.add("(min-width: 769px)", () => {
+        // 1. Hardware acceleration & anti-blur on pinned container
+        gsap.set(section, {
+          willChange: "transform",
+          backfaceVisibility: "hidden",
+          force3D: true,
+        });
+
+        // 2. Set Initial State for all characters: Pale peach/orange
+        gsap.set(charElements, {
+          color: "rgba(255, 84, 0, 0.45)",
+          scale: 1,
+          rotation: 0,
+          display: "inline-block",
           transformOrigin: "center center",
-          willChange: "transform, opacity",
+          textShadow: "0px 0px 0px rgba(255,84,0,0)",
+          willChange: "transform, color",
           backfaceVisibility: "hidden",
         });
-      }
 
-      // Responsive scroll distance calculation matching Labib original authentic values
-      const getPinDistance = () => {
-        const width = typeof window !== "undefined" ? window.innerWidth : 1440;
-        if (width < 480) return 1150; // Mobile (< 480px)
-        if (width < 992) return 1550; // Tablet (< 992px)
-        return 2200; // Desktop
-      };
+        // 3. Set Initial State for pills: Hidden, scaled down, shifted down
+        if (pills.length) {
+          gsap.set(pills, {
+            opacity: 0,
+            scale: 0.6,
+            y: 24,
+            transformOrigin: "center center",
+            willChange: "transform, opacity",
+            backfaceVisibility: "hidden",
+          });
+        }
 
-      const scrollerEl = document.querySelector(".page") || window;
-      const isMobile = typeof window !== "undefined" && window.innerWidth < 992;
+        // Responsive scroll distance calculation matching Labib original authentic values
+        const getPinDistance = () => {
+          const width = typeof window !== "undefined" ? window.innerWidth : 1440;
+          if (width < 480) return 1150; // Mobile (< 480px)
+          if (width < 992) return 1550; // Tablet (< 992px)
+          return 2200; // Desktop
+        };
 
-      // 4. Create Responsive Scrubbed Pinned Timeline (GPU transform pinning for 100% stable jitter-free scroll)
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          scroller: scrollerEl,
-          start: "top top",
-          end: () => `+=${getPinDistance()}`,
-          pin: section,
-          pinSpacing: true,
-          pinType: "transform",
-          scrub: isMobile ? 0.35 : 0.8,
-          anticipatePin: 0,
-          fastScrollEnd: true,
-          preventOverlaps: true,
-          invalidateOnRefresh: false,
-        },
+        const scrollerEl = document.querySelector(".page") || window;
+        const isMobile = typeof window !== "undefined" && window.innerWidth < 992;
+
+        // 4. Create Responsive Scrubbed Pinned Timeline (GPU transform pinning for 100% stable jitter-free scroll)
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: section,
+            scroller: scrollerEl,
+            start: "top top",
+            end: () => `+=${getPinDistance()}`,
+            pin: section,
+            pinSpacing: true,
+            pinType: "transform",
+            scrub: isMobile ? 0.35 : 0.8,
+            anticipatePin: 0,
+            fastScrollEnd: true,
+            preventOverlaps: true,
+            invalidateOnRefresh: false,
+          },
+        });
+
+        const totalChars = charElements.length;
+        const letterAnimSpan = 85;
+        const FIXED_TILTS = [-2.8, 3.2, -1.9, 2.6, -3.1, 1.8, -2.4, 3.1];
+
+        charElements.forEach((char, i) => {
+          const startTime = (i / totalChars) * letterAnimSpan;
+          const tilt = FIXED_TILTS[i % FIXED_TILTS.length];
+
+          // Stage 1: Scale 1.12, Fixed authentic tilt, Thick glowing #FF5400
+          tl.to(
+            char,
+            {
+              color: "#FF5400",
+              scale: 1.12,
+              rotation: tilt,
+              textShadow:
+                "0.6px 0.6px 0 #FF5400, -0.6px -0.6px 0 #FF5400, 0.6px -0.6px 0 #FF5400, -0.6px 0.6px 0 #FF5400",
+              duration: 3.5,
+              ease: "power1.out",
+              force3D: true,
+            },
+            startTime
+          );
+
+          // Stage 2: Settle to normal scale 1, 0 deg, clean black #000000
+          tl.to(
+            char,
+            {
+              color: "#000000",
+              scale: 1,
+              rotation: 0,
+              textShadow: "0px 0px 0px rgba(0,0,0,0)",
+              duration: 3.5,
+              ease: "power1.inOut",
+              force3D: true,
+            },
+            startTime + 3.5
+          );
+        });
+
+        // 5. Pop-in Pills at milestones
+        if (pills[0]) {
+          tl.to(
+            pills[0],
+            {
+              opacity: 1,
+              scale: 1,
+              y: 0,
+              duration: 6,
+              ease: "back.out(2)",
+            },
+            35
+          );
+        }
+
+        if (pills[1]) {
+          tl.to(
+            pills[1],
+            {
+              opacity: 1,
+              scale: 1,
+              y: 0,
+              duration: 6,
+              ease: "back.out(2)",
+            },
+            72
+          );
+        }
+
+        if (pills[2]) {
+          tl.to(
+            pills[2],
+            {
+              opacity: 1,
+              scale: 1,
+              y: 0,
+              duration: 6,
+              ease: "back.out(2)",
+            },
+            96
+          );
+        }
       });
 
-      const totalChars = charElements.length;
-      const letterAnimSpan = 85;
-      const FIXED_TILTS = [-2.8, 3.2, -1.9, 2.6, -3.1, 1.8, -2.4, 3.1];
+      // ==========================================
+      // MOBILE: (max-width: 768px)
+      // STABILIZED JITTER-FREE LOGIC
+      // ==========================================
+      mm.add("(max-width: 768px)", () => {
+        // 1. Hardware acceleration on pinned container
+        gsap.set(section, {
+          willChange: "transform",
+          backfaceVisibility: "hidden",
+          force3D: true,
+        });
 
-      charElements.forEach((char, i) => {
-        const startTime = (i / totalChars) * letterAnimSpan;
-        const tilt = FIXED_TILTS[i % FIXED_TILTS.length];
+        // 2. Set Initial State for mobile characters: Stable, fixed scale 1, no rotation, no heavy textShadow
+        gsap.set(charElements, {
+          color: "rgba(255, 84, 0, 0.45)",
+          scale: 1,
+          rotation: 0,
+          display: "inline-block",
+          transformOrigin: "center center",
+          textShadow: "none",
+          willChange: "color",
+          backfaceVisibility: "hidden",
+        });
 
-        // Stage 1: Scale 1.12, Fixed authentic tilt, Thick glowing #FF5400
-        tl.to(
-          char,
-          {
-            color: "#FF5400",
-            scale: 1.12,
-            rotation: tilt,
-            textShadow:
-              "0.6px 0.6px 0 #FF5400, -0.6px -0.6px 0 #FF5400, 0.6px -0.6px 0 #FF5400, -0.6px 0.6px 0 #FF5400",
-            duration: 3.5,
-            ease: "power1.out",
-            force3D: true,
+        // 3. Set Initial State for pills: Hidden, shifted down
+        if (pills.length) {
+          gsap.set(pills, {
+            opacity: 0,
+            scale: 0.8,
+            y: 20,
+            transformOrigin: "center center",
+            willChange: "transform, opacity",
+            backfaceVisibility: "hidden",
+          });
+        }
+
+        const scrollerEl = document.querySelector(".page") || window;
+
+        // 4. Create Mobile Pinned Timeline with jitter-free scroll configuration
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: section,
+            scroller: scrollerEl,
+            start: "top top",
+            end: "+=1150",
+            pin: section,
+            pinSpacing: true,
+            pinType: "transform",
+            scrub: 0.35,
+            anticipatePin: 0,
+            fastScrollEnd: true,
+            preventOverlaps: true,
+            invalidateOnRefresh: false,
           },
-          startTime
-        );
+        });
 
-        // Stage 2: Settle to normal scale 1, 0 deg, clean black #000000
-        tl.to(
-          char,
-          {
-            color: "#000000",
-            scale: 1,
-            rotation: 0,
-            textShadow: "0px 0px 0px rgba(0,0,0,0)",
-            duration: 3.5,
-            ease: "power1.inOut",
-            force3D: true,
-          },
-          startTime + 3.5
-        );
+        const totalChars = charElements.length;
+        const letterAnimSpan = 85;
+
+        charElements.forEach((char, i) => {
+          const startTime = (i / totalChars) * letterAnimSpan;
+
+          // Stage 1: Glowing vibrant orange wave reveal (100% stable, zero layout shift)
+          tl.to(
+            char,
+            {
+              color: "#FF5400",
+              duration: 3.5,
+              ease: "power1.out",
+            },
+            startTime
+          );
+
+          // Stage 2: Settle to solid black #000000
+          tl.to(
+            char,
+            {
+              color: "#000000",
+              duration: 3.5,
+              ease: "power1.inOut",
+            },
+            startTime + 3.5
+          );
+        });
+
+        // 5. Pop-in Pills at milestones
+        if (pills[0]) {
+          tl.to(
+            pills[0],
+            {
+              opacity: 1,
+              scale: 1,
+              y: 0,
+              duration: 6,
+              ease: "back.out(2)",
+            },
+            35
+          );
+        }
+
+        if (pills[1]) {
+          tl.to(
+            pills[1],
+            {
+              opacity: 1,
+              scale: 1,
+              y: 0,
+              duration: 6,
+              ease: "back.out(2)",
+            },
+            72
+          );
+        }
+
+        if (pills[2]) {
+          tl.to(
+            pills[2],
+            {
+              opacity: 1,
+              scale: 1,
+              y: 0,
+              duration: 6,
+              ease: "back.out(2)",
+            },
+            96
+          );
+        }
       });
-
-      // 5. Pop-in Pills at milestones
-      if (pills[0]) {
-        tl.to(
-          pills[0],
-          {
-            opacity: 1,
-            scale: 1,
-            y: 0,
-            duration: 6,
-            ease: "back.out(2)",
-          },
-          35
-        );
-      }
-
-      if (pills[1]) {
-        tl.to(
-          pills[1],
-          {
-            opacity: 1,
-            scale: 1,
-            y: 0,
-            duration: 6,
-            ease: "back.out(2)",
-          },
-          72
-        );
-      }
-
-      if (pills[2]) {
-        tl.to(
-          pills[2],
-          {
-            opacity: 1,
-            scale: 1,
-            y: 0,
-            duration: 6,
-            ease: "back.out(2)",
-          },
-          96
-        );
-      }
 
       // Refresh ScrollTrigger to ensure pin start/end are exact
       ScrollTrigger.refresh();
@@ -230,7 +370,7 @@ export default function AboutSection() {
 
       ctx = {
         kill: () => {
-          tl.kill();
+          mm.revert();
           ScrollTrigger.getAll().forEach((t: any) => {
             if (t.trigger === section || t.pin === section) {
               t.kill();
