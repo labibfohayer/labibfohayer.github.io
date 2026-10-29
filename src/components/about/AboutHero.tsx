@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import gsap from "gsap";
 
 interface TeamMember {
@@ -56,9 +57,14 @@ export default function AboutHero() {
   const storyPathRef = useRef<SVGPathElement>(null);
 
   const [activeMember, setActiveMember] = useState<TeamMember | null>(null);
+  const [mounted, setMounted] = useState(false);
   const modalOverlayRef = useRef<HTMLDivElement>(null);
   const modalCardRef = useRef<HTMLDivElement>(null);
   const lastClickedCardRect = useRef<DOMRect | null>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // 1. Hero Entrance Motion (Headings, Kinetic Pills, Hero SVG Loop, Illustration, Paragraphs)
   useEffect(() => {
@@ -617,6 +623,10 @@ export default function AboutHero() {
   useEffect(() => {
     if (!activeMember) return;
 
+    if ((window as any).lenis) {
+      (window as any).lenis.stop();
+    }
+
     const overlay = modalOverlayRef.current;
     const card = modalCardRef.current;
     if (!overlay || !card) return;
@@ -667,10 +677,18 @@ export default function AboutHero() {
       }
     };
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      if ((window as any).lenis) {
+        (window as any).lenis.start();
+      }
+    };
   }, [activeMember]);
 
   const closeModal = () => {
+    if ((window as any).lenis) {
+      (window as any).lenis.start();
+    }
     const overlay = modalOverlayRef.current;
     const card = modalCardRef.current;
     if (!overlay || !card) {
@@ -875,48 +893,51 @@ export default function AboutHero() {
       </section>
 
       {/* Floating Modal for Team Member Bio */}
-      {activeMember && (
-        <div
-          ref={modalOverlayRef}
-          className="team-popup-overlay is-active"
-          onClick={(e) => {
-            if (e.target === modalOverlayRef.current) closeModal();
-          }}
-        >
-          <div ref={modalCardRef} className="team-popup-card" role="dialog" aria-modal="true">
-            <button
-              className="team-popup-close-btn"
-              aria-label="Close popup"
-              onClick={closeModal}
-            >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <line x1="18" y1="6" x2="6" y2="18" />
-                <line x1="6" y1="6" x2="18" y2="18" />
-              </svg>
-            </button>
+      {mounted &&
+        activeMember &&
+        createPortal(
+          <div
+            ref={modalOverlayRef}
+            className="team-popup-overlay is-active"
+            onClick={(e) => {
+              if (e.target === modalOverlayRef.current) closeModal();
+            }}
+          >
+            <div ref={modalCardRef} className="team-popup-card" role="dialog" aria-modal="true">
+              <button
+                className="team-popup-close-btn"
+                aria-label="Close popup"
+                onClick={closeModal}
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
 
-            <div className="team-popup-img-wrap">
-              <img
-                className="team-popup-img"
-                src={activeMember.image}
-                alt={activeMember.name}
-              />
-            </div>
-
-            <div className="team-popup-content">
-              <div className="team-popup-header">
-                <h3 className="team-popup-name">{activeMember.heading}</h3>
+              <div className="team-popup-img-wrap">
+                <img
+                  className="team-popup-img"
+                  src={activeMember.image}
+                  alt={activeMember.name}
+                />
               </div>
 
-              <div className="team-popup-body">
-                {activeMember.paragraphs.map((para, i) => (
-                  <p key={i}>{para}</p>
-                ))}
+              <div className="team-popup-content">
+                <div className="team-popup-header">
+                  <h3 className="team-popup-name">{activeMember.heading}</h3>
+                </div>
+
+                <div className="team-popup-body">
+                  {activeMember.paragraphs.map((para, i) => (
+                    <p key={i}>{para}</p>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      )}
+          </div>,
+          document.body,
+        )}
     </>
   );
 }
