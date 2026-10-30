@@ -1525,30 +1525,134 @@ body {
     text-align: center !important;
   }
 
-  /* Services Mobile */
+  /* Services Mobile (Unified & Proportional to SVG Path) */
   .section-services-wrapper {
     overflow-x: hidden !important;
+    gap: 2em !important;
+    padding-top: 5em !important;
   }
 
-  .service-block.one,
+  .section-services-body {
+    position: relative !important;
+    width: 100% !important;
+    min-height: 0px !important;
+    overflow: visible !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .services-path {
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+  }
+
+  .services-path-svg {
+    display: block !important;
+    width: 100% !important;
+    position: relative !important;
+    opacity: 0.25 !important;
+  }
+
+  .services-path-svg-dark {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    position: absolute !important;
+    inset: 0 !important;
+  }
+
+  .service-path-mobile,
+  .service-path-mobile-dark {
+    display: none !important;
+  }
+
+  .blockhole-start,
+  .blackhole-end {
+    display: block !important;
+    width: 0.85em !important;
+  }
+
+  .services-layers {
+    position: absolute !important;
+    top: 0 !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    padding: 4.5% 1em 2.5% 1em !important;
+    box-sizing: border-box !important;
+    gap: 0 !important;
+    z-index: 2 !important;
+  }
+
+  .service-layer {
+    height: auto !important;
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    font-size: clamp(0.48em, 2.2vw, 0.6em) !important;
+  }
+
+  .service-block {
+    opacity: 1 !important;
+    visibility: visible !important;
+    gap: 0.35em !important;
+    flex-flow: row nowrap !important;
+    align-items: center !important;
+    width: auto !important;
+  }
+
+  .service-block.one {
+    position: relative !important;
+    right: -12% !important;
+    left: auto !important;
+  }
+
+  .service-block.two {
+    position: relative !important;
+    left: -8% !important;
+    right: auto !important;
+  }
+
+  .service-block.three {
+    position: relative !important;
+    right: 0% !important;
+    left: auto !important;
+  }
+
   .service-block.four {
-    right: -27% !important;
+    position: relative !important;
+    right: -10% !important;
+    left: auto !important;
+  }
+
+  .service-block.five {
+    position: relative !important;
+    left: -6% !important;
+    right: auto !important;
   }
 
   .service-block.six {
-    right: -17% !important;
+    position: relative !important;
+    right: -8% !important;
+    left: auto !important;
+  }
+
+  .service-block.seven {
+    position: relative !important;
+    left: -2% !important;
+    right: auto !important;
   }
 
   .service-block-para-wrapper {
     display: none !important;
-  }
-
-  .service-layer {
-    font-size: 0.4em !important;
-  }
-
-  .services-layers {
-    gap: 4.5em !important;
   }
 
   /* Testimonials Mobile */
@@ -1767,113 +1871,6 @@ body {
     display: flex !important;
     visibility: visible !important;
     opacity: 1 !important;
-  }
-
-  /* Services Authentic Layout */
-  .section-services-wrapper {
-    gap: 2em !important;
-    padding-top: 5em !important;
-  }
-
-  .section-services-body {
-    justify-content: flex-start !important;
-    align-items: center !important;
-    min-height: 0px !important;
-    overflow: hidden !important;
-  }
-
-  .services-path-svg {
-    display: none !important;
-  }
-
-  .service-block.one {
-    gap: 0.35em !important;
-    flex-flow: wrap !important;
-    justify-content: center !important;
-    align-items: flex-end !important;
-    width: 60% !important;
-    right: -13% !important;
-    left: auto !important;
-  }
-
-  .service-block.two {
-    gap: 0.35em !important;
-    flex-flow: wrap !important;
-    justify-content: center !important;
-    align-items: flex-end !important;
-    width: 50% !important;
-    left: -15% !important;
-    right: auto !important;
-  }
-
-  .service-block.three {
-    gap: 0.35em !important;
-    flex-flow: wrap !important;
-    justify-content: center !important;
-    align-items: center !important;
-    width: 50% !important;
-    right: -16% !important;
-    left: auto !important;
-  }
-
-  .service-block.four {
-    left: auto !important;
-    right: -3% !important;
-  }
-
-  .service-block.five {
-    gap: 0.35em !important;
-    flex-flow: wrap !important;
-    justify-content: center !important;
-    align-items: flex-end !important;
-    width: 65% !important;
-    display: flex !important;
-    position: relative !important;
-    left: auto !important;
-    right: -15% !important;
-  }
-
-  .service-block.six {
-    gap: 0.35em !important;
-    flex-flow: wrap !important;
-    justify-content: flex-start !important;
-    align-items: flex-end !important;
-    width: 75% !important;
-    right: -13% !important;
-    left: auto !important;
-  }
-
-  .service-block.seven {
-    gap: 0.35em !important;
-    flex-flow: wrap !important;
-    justify-content: center !important;
-    align-items: flex-end !important;
-    width: 50% !important;
-    left: 13% !important;
-    right: auto !important;
-  }
-
-  .service-svg {
-    width: 6em !important;
-    min-width: 6em !important;
-  }
-
-  .service-text {
-    font-size: 4.2em !important;
-  }
-
-  .service-layer {
-    width: 100% !important;
-    font-size: 0.7em !important;
-  }
-
-  .services-layers {
-    gap: 9em !important;
-    justify-content: center !important;
-    align-items: center !important;
-    height: auto !important;
-    padding-bottom: 5em !important;
-    top: 57% !important;
   }
 
   /* Testimonials */
